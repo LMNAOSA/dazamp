@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111312">
+  <title>DAZAMP | Modern British Amplifier</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="worktop">
+    <header class="masthead">
+      <div class="studio-title"><span class="glyph">◫</span><span>DAZAMP <small>AMPLIFICATION SYSTEMS</small></span></div>
+      <div class="head-right"><span class="product-version">DAZAMP / 001 — DEVELOPMENT SERIES</span><span class="dot"></span><span id="engineState">ENGINE OFFLINE</span></div>
+    </header>
+    <main>
+      <section class="rigbar" aria-label="Rig control">
+        <div class="rig-name"><span class="eyebrow">AMPLIFIER PROFILE</span><strong>THE MODERN BRITISH</strong><span class="rig-serial">MODEL: D-800 / HYBRID</span></div>
+        <div class="preset-ui"><span class="eyebrow">SOUND LIBRARY</span><div class="preset-select"><button id="prevPreset" aria-label="Previous preset">‹</button><select id="presetSelect" aria-label="Tone preset"></select><button id="nextPreset" aria-label="Next preset">›</button></div></div>
+        <div class="power-block"><span class="eyebrow">AUDIO PROCESSOR</span><button id="powerButton" class="power-button" aria-pressed="false"><span class="power-led"></span><span id="powerText">POWER ON</span></button></div>
+      </section>
+      <section class="rack" aria-label="DAZAMP amplifier interface">
+        <span class="screw screw-tl"></span><span class="screw screw-tr"></span><span class="screw screw-bl"></span><span class="screw screw-br"></span>
+        <div class="faceplate">
+          <div class="upper-metal">
+            <div class="engraving"><div class="brand-large">DAZ<span>A</span>MP</div><div class="brand-sub">DISCRETE · ANALOGUE · ZERO-COMPROMISE · AMPLIFICATION · MODELLING · PLATFORM</div></div>
+            <div class="needle-meter" aria-label="Output meter"><div class="meter-label">OUTPUT / dB</div><svg viewBox="0 0 180 94" aria-hidden="true"><path d="M 17 77 A 73 73 0 0 1 163 77" stroke="#604a2d" stroke-width="2" fill="none"/><path d="M 28 77 A 62 62 0 0 1 152 77" stroke="#c89948" stroke-width="1" opacity="0.6" fill="none"/><g stroke="#ad9668" stroke-width="1"><line x1="16" y1="78" x2="24" y2="78"/><line x1="32" y1="29" x2="38" y2="34"/><line x1="90" y1="4" x2="90" y2="13"/><line x1="148" y1="29" x2="142" y2="34"/><line x1="164" y1="78" x2="156" y2="78"/></g><text x="19" y="91" fill="#ad9369" font-size="10">−30</text><text x="79" y="22" fill="#ad9369" font-size="10">−12</text><text x="145" y="91" fill="#ad9369" font-size="10">0</text><g id="vuNeedle"><line x1="90" y1="83" x2="90" y2="18" stroke="#edc27d" stroke-width="2"/><circle cx="90" cy="83" r="5" fill="#a78a63"/></g></svg><div class="meter-foot">DAZAMP AUDIO <span id="peakLabel">−∞ dB</span></div></div>
+          </div>
+          <div class="cab-grill" aria-hidden="true"><div class="grill-brand">D-800</div><div class="grill-meta">BRITISH VOICING / HAND-TUNED CIRCUIT</div></div>
+          <div class="control-zone"><div class="control-label-row"><div><span class="eyebrow">TONE SHAPING</span><h1>FOUR CONTROLS. ONE SOUND.</h1></div><span class="zone-label">PRECISION MACROS // 0—100</span></div>
+            <div class="main-knobs">
+              <div class="knob-unit"><div class="knob" role="slider" tabindex="0" data-param="tight" aria-label="Tight" aria-valuemin="0" aria-valuemax="100" aria-valuenow="69"><div class="knob-shadow"></div><div class="knob-ring"></div><div class="knob-face"><div class="knob-pointer"></div><div class="knob-inset"></div></div></div><div class="knob-title">TIGHT</div><div class="knob-value" id="tightValue">69</div><div class="knob-desc">PICK ATTACK / LOW-END</div></div>
+              <div class="knob-unit"><div class="knob" role="slider" tabindex="0" data-param="grind" aria-label="Grind" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72"><div class="knob-shadow"></div><div class="knob-ring"></div><div class="knob-face"><div class="knob-pointer"></div><div class="knob-inset"></div></div></div><div class="knob-title">GRIND</div><div class="knob-value" id="grindValue">72</div><div class="knob-desc">HARMONICS / SATURATION</div></div>
+              <div class="knob-unit"><div class="knob" role="slider" tabindex="0" data-param="body" aria-label="Body" aria-valuemin="0" aria-valuemax="100" aria-valuenow="61"><div class="knob-shadow"></div><div class="knob-ring"></div><div class="knob-face"><div class="knob-pointer"></div><div class="knob-inset"></div></div></div><div class="knob-title">BODY</div><div class="knob-value" id="bodyValue">61</div><div class="knob-desc">MIDRANGE / WEIGHT</div></div>
+              <div class="knob-unit"><div class="knob" role="slider" tabindex="0" data-param="space" aria-label="Space" aria-valuemin="0" aria-valuemax="100" aria-valuenow="14"><div class="knob-shadow"></div><div class="knob-ring"></div><div class="knob-face"><div class="knob-pointer"></div><div class="knob-inset"></div></div></div><div class="knob-title">SPACE</div><div class="knob-value" id="spaceValue">14</div><div class="knob-desc">STEREO DEPTH / AMBIENCE</div></div>
+            </div>
+            <div class="bottom-controls"><div class="signal-chain"><span class="signal-label">SIGNAL PATH</span><span>HI-Z</span><b>—</b><span>BOOST</span><b>—</b><span>AMP</span><b>—</b><span>CAB</span><b>—</b><span>SPACE</span></div><div class="a-b"><span class="signal-label">SNAPSHOT</span><button id="aButton" class="ab selected">A</button><button id="bButton" class="ab">B</button><button id="copyAB" class="mini-button" title="Copy current snapshot to the other">COPY A/B</button></div></div>
+          </div>
+        </div>
+        <div class="rack-rim"><span>ENGINEERED FOR IMPACT</span><span>DAZAMP / D-800 SERIES</span><span>48 KHZ RECOMMENDED</span></div>
+      </section>
+      <section class="io-panel" aria-label="Audio input and settings">
+        <div class="io-left"><span class="eyebrow">INPUT SOURCE</span><div class="source-buttons"><button id="demoButton" class="source-button active">DEMO RIFF</button><button id="micButton" class="source-button">GUITAR / INTERFACE</button><label for="fileInput" class="source-button file-label">LOAD DRY AUDIO</label><input type="file" id="fileInput" accept="audio/*" hidden></div><div id="sourceStatus" class="inline-status">Press POWER ON, then DEMO RIFF to audition the tone.</div></div>
+        <div class="io-right"><span class="eyebrow">WORKFLOW</span><div class="source-buttons"><button id="toggleAdvanced" class="source-button">ADVANCED <span id="advancedChevron">+</span></button><button id="savePreset" class="source-button">SAVE PRESET</button><button id="recordButton" class="source-button">RECORD OUTPUT</button><button id="monoButton" class="source-button" aria-pressed="false">MONO CHECK</button><button id="tunerButton" class="source-button" aria-pressed="false">TUNER</button></div><div class="local-badge"><span class="dot"></span>LOCAL PROCESSING · NO ACCOUNT</div></div>
+      </section>
+      <section id="tunerPanel" class="tuner-panel" hidden aria-label="Input guitar tuner">
+        <div class="tuner-heading"><span class="eyebrow">INSTRUMENT / INPUT TUNER</span><span id="tunerHint">Play a single note through your guitar interface</span></div>
+        <div class="tuner-main"><strong id="tunerNote">—</strong><span id="tunerCents">WAITING FOR SIGNAL</span><div class="tuner-scale" aria-hidden="true"><div class="tuner-ticks"></div><span class="tuner-center"></span><span class="tuner-needle" id="tunerNeedle"></span></div><span id="tunerFreq">— Hz</span></div>
+      </section>
+      <section class="advanced" id="advancedPanel" hidden aria-label="Advanced settings"><div class="advanced-top"><div><span class="eyebrow">UNDER THE HOOD</span><h2>TECHNICAL CONTROL</h2></div><span class="feature-flag">ALGORITHM V0.2 · PROCEDURAL CAB</span></div><div class="settings-grid"><label>INPUT TRIM <span id="inputTrimOut">0 dB</span><input id="inputTrim" type="range" min="-18" max="18" step="1" value="0"></label><label>OUTPUT LEVEL <span id="outputTrimOut">−5 dB</span><input id="outputTrim" type="range" min="-24" max="6" step="1" value="-5"></label><label>HIGH CUT <span id="highCutOut">6800 Hz</span><input id="highCut" type="range" min="3500" max="10000" step="100" value="6800"></label><label>GATE THRESHOLD <span id="gateOut">−48 dB</span><input id="gate" type="range" min="-70" max="-20" step="1" value="-48"></label><label>CAB CHARACTER <span id="cabOut">45% RIBBON</span><input id="cabMix" type="range" min="0" max="100" step="1" value="45"></label><label>STEREO WIDTH <span id="widthOut">70%</span><input id="width" type="range" min="0" max="100" step="1" value="70"></label></div><div class="advanced-foot"><label for="irInput" class="source-button">LOAD CUSTOM CAB WAV IR</label><input type="file" id="irInput" accept=".wav,audio/wav" hidden><span id="irStatus">Built-in synthetic 4×12 response · load your own IR for authentic cab tone</span></div><div class="bank-tools"><button id="exportBank" class="source-button">EXPORT PRESETS</button><label for="importBankInput" class="source-button file-label">IMPORT PRESETS</label><input type="file" id="importBankInput" accept=".json,application/json" hidden><span>Preset JSON is local to your device. No cloud uploads.</span></div></section>
+      <footer><div>DAZAMP <span>DEVELOPMENT PREVIEW · AUDIO V0.2</span></div><span>ORIGINAL DSP PROTOTYPE — NOT A NEURAL CAPTURE OR OFFICIAL LEE MALIA TONE</span></footer>
+    </main>
+  </div>
+  <script src="tuner.js"></script><script src="audio.js"></script><script src="app.js"></script>
+</body>
+</html>

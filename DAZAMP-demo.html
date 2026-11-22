@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111312">
+  <title>DAZAMP | Modern British Amplifier</title>
+  <style>
+:root{--bg:#131514;--silver:#bec1bd;--small:#8b8d89;--amber:#e2ad63;--edge:#414441;--panel:#242725;--shadow:#0b0d0b}*{box-sizing:border-box}html{background:#101211}body{margin:0;color:#d3d4cf;background:radial-gradient(ellipse 75% 60% at 50% -5%,#343934 0,transparent 75%),repeating-linear-gradient(90deg,transparent 0 3px,#0000000a 3px 4px),#121513;font-family:Arial,'Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased}.worktop{width:min(1420px,calc(100% - 56px));margin:auto;padding:22px 0 35px}button,select,input{font:inherit}button{cursor:pointer}button:focus-visible,.knob:focus-visible,input:focus-visible,select:focus-visible,.file-label:focus-visible{outline:2px solid var(--amber);outline-offset:4px}.eyebrow{display:block;font-size:10px;color:#969b96;letter-spacing:.22em;font-weight:700}.masthead{display:flex;justify-content:space-between;align-items:center;min-height:42px;margin-bottom:27px}.studio-title{display:flex;align-items:center;gap:12px;font-weight:900;font-size:16px;letter-spacing:.18em}.studio-title small{display:block;font-size:8px;letter-spacing:.28em;color:#727971;padding-top:4px}.glyph{font-size:25px;font-weight:400;color:var(--amber)}.head-right{font-size:9px;letter-spacing:.15em;color:#9ba09b;display:flex;align-items:center;gap:12px}.product-version{margin-right:17px;color:#565c57}.dot{display:inline-block;width:6px;height:6px;background:#715a37;border-radius:100%;box-shadow:0 0 8px #ffb45130}.dot.on{background:#e3b879;box-shadow:0 0 9px #f1b25a}.rigbar{display:flex;justify-content:space-between;align-items:center;gap:28px;margin-bottom:17px;padding:0 26px}.rig-name strong{display:block;font-size:20px;letter-spacing:.13em;font-weight:750;margin:7px 0 4px;color:#e0e2db}.rig-serial{font-size:10px;letter-spacing:.16em;color:#727771}.preset-ui{min-width:min(360px,40%)}.preset-select{display:flex;align-items:center;border:1px solid #414641;background:linear-gradient(#2b2e2a,#1b1d1a);box-shadow:inset 0 1px #64696244,0 3px 5px #0004;margin-top:8px}.preset-select button{width:36px;height:40px;border:0;background:transparent;color:#c1ae8d;font-size:23px}.preset-select button:hover{background:#393b34}.preset-select select{appearance:none;outline:0;background:transparent;color:#e3e0d8;border:0;flex:1;text-align:center;min-width:0;font-size:11px;font-weight:700;letter-spacing:.13em}.preset-select option{color:#ddd;background:#222}.power-button{margin-top:8px;border:1px solid #535750;background:linear-gradient(#3b3f38 0%,#1d211d 52%,#30332e 100%);padding:12px 21px;color:#d9ddd5;font-weight:bold;font-size:11px;letter-spacing:.14em;min-width:160px;text-align:left;box-shadow:inset 0 2px #7d837622,0 6px 12px #0006}.power-button .power-led{display:inline-block;width:8px;height:8px;background:#3a362d;border:1px solid #886d44;border-radius:50%;margin-right:10px}.power-button.on .power-led{background:#e3ab60;box-shadow:0 0 14px #f2b86c}.rack{position:relative;padding:16px 17px 11px;border:1px solid #565b54;border-radius:11px;background:linear-gradient(116deg,#444844 0%,#171a18 3%,#2a2d28 12%,#111312 49%,#343733 89%,#161917 98%);box-shadow:0 5px 1px #050705,0 10px 28px #000c,0 30px 75px #0009,inset 0 1px 1px #b6bdb155,inset 0 -1px #000}.rack:after{content:'';pointer-events:none;position:absolute;inset:0;border-radius:11px;background:repeating-linear-gradient(12deg,transparent 0,transparent 3px,#fff1 4px,#0001 5px);opacity:.11}.screw{position:absolute;width:12px;height:12px;border-radius:50%;z-index:2;background:radial-gradient(circle at 30% 25%,#b3bab1,#484d47 40%,#171b18 70%);box-shadow:0 0 0 2px #0b0e0b,0 1px 2px #000;}.screw:after{content:'';position:absolute;width:8px;height:1px;background:#171917;transform:rotate(-45deg);top:6px;left:2px}.screw-tl{top:14px;left:9px}.screw-tr{top:14px;right:9px}.screw-bl{bottom:20px;left:9px}.screw-br{bottom:20px;right:9px}.faceplate{background:linear-gradient(150deg,#414540 0%,#2b2f2b 8%,#131614 59%,#343632 100%);box-shadow:inset 1px 1px 4px #afb2a055,inset -1px -1px 4px #050706,0 2px 2px #000a;border:1px solid #444941;overflow:hidden;border-radius:4px}.upper-metal{min-height:155px;padding:25px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px;background:repeating-linear-gradient(0deg,#ffffff04 0 1px,transparent 1px 4px),linear-gradient(180deg,#424541 0%,#292d29 8%,#2c302c 48%,#1c211e 100%);border-bottom:2px solid #0c0f0d}.engraving{text-align:left;max-width:720px}.brand-large{font-family:'Arial Black',Impact,sans-serif;font-weight:1000;line-height:1;font-stretch:condensed;font-size:clamp(56px,8vw,105px);letter-spacing:.045em;color:#9da19a;text-shadow:0 2px 0 #151916,0 -1px 0 #e1e4d344,2px 3px 6px #02040288;transform:scaleX(.91);transform-origin:left}.brand-large span{color:#c4c5b9}.brand-sub{font-size:9px;color:#8f938c;letter-spacing:.18em;line-height:1.7;margin:8px 0 0 5px}.needle-meter{flex:0 0 220px;border-radius:5px;padding:13px 15px 7px;background:linear-gradient(145deg,#20231e,#0c0e0d);border:5px ridge #60645a;box-shadow:0 4px 10px #000a,inset 0 0 18px #ba81320b;position:relative}.needle-meter:before{content:'';position:absolute;inset:4px;pointer-events:none;background:linear-gradient(120deg,#fff1,transparent 35%);}.meter-label{font-size:10px;text-align:center;letter-spacing:.25em;color:#c5b493}.needle-meter svg{width:100%;display:block;margin-top:5px;filter:drop-shadow(0 0 2px #e5b27144)}#vuNeedle{transform-origin:90px 83px;transform:rotate(-70deg);transition:transform .07s linear}.meter-foot{font-size:8px;letter-spacing:.1em;display:flex;justify-content:space-between;color:#938673}.cab-grill{position:relative;height:113px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-top:2px solid #434943;border-bottom:5px solid #0c100e;background:radial-gradient(ellipse 45% 320% at 50% 50%,#333831aa,#030504a0 80%),repeating-linear-gradient(90deg,#0a0d0b 0 2px,#2d322d 2px 3px,#0a0d0b 3px 6px),repeating-linear-gradient(0deg,#121512 0 3px,#252924 3px 4px)}.cab-grill:after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent 0 2px,#06080699 2px 3px);opacity:.6;pointer-events:none}.grill-brand{font:700 56px Impact,sans-serif;letter-spacing:.26em;color:#a7aaa2;text-shadow:0 3px 5px #000b,0 -1px #fff5}.grill-meta{font-size:9px;letter-spacing:.2em;color:#6f736c;position:absolute;right:30px;bottom:10px}.control-zone{padding:28px 42px 19px;background:repeating-linear-gradient(0deg,#fff1 0 1px,transparent 1px 4px),linear-gradient(167deg,#343833,#262b27 42%,#161a17)}.control-label-row{display:flex;justify-content:space-between;align-items:end;gap:20px;border-bottom:1px solid #777d6b35;padding-bottom:14px}.control-label-row h1{font-size:17px;font-weight:700;letter-spacing:.13em;margin:8px 0 0;color:#d3d5ce}.zone-label{font-size:9px;color:#868c82;letter-spacing:.15em}.main-knobs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:30px 5% 24px}.knob-unit{display:flex;flex-direction:column;align-items:center;text-align:center}.knob{--angle:0deg;position:relative;cursor:ns-resize;width:112px;height:112px;touch-action:none;user-select:none;filter:drop-shadow(0 9px 4px #04060598)}.knob-shadow{position:absolute;inset:4px;border-radius:100%;background:#090a09;box-shadow:0 0 0 3px #555b53,0 0 0 5px #141713,inset 0 0 6px #000}.knob-ring{position:absolute;inset:3px;border-radius:50%;background:repeating-conic-gradient(from 0deg,#1b1e1b 0deg 4deg,#737a70 4deg 6deg,#343934 6deg 8deg);mask:radial-gradient(transparent 53%,black 56%,black 65%,transparent 67%)}.knob-face{position:absolute;inset:16px;border-radius:50%;background:conic-gradient(from 15deg,#666b64,#1a1d1b 13%,#93998d 24%,#373c36 32%,#1b1f1c 48%,#646c63 64%,#1b1d1b 80%,#7a7e75 92%,#666b64);box-shadow:0 2px 4px #000,0 -2px 3px #dde3c822,inset 0 1px 3px #ffffff55,inset 0 -4px 9px #000d;transform:rotate(var(--angle))}.knob-face:before{content:'';position:absolute;inset:9px;border-radius:50%;background:radial-gradient(circle at 42% 32%,#50574f,#282d29 65%,#131713);border:1px solid #888f84;box-shadow:inset 0 1px 2px #d0d3c122,0 1px 4px #0008}.knob-pointer{position:absolute;top:2px;left:50%;transform:translateX(-50%);height:19px;width:3px;background:linear-gradient(90deg,#735b3b,#ffc47e,#7e6034);z-index:1;box-shadow:0 0 4px #f2ac5a66;border-radius:1px}.knob-inset{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:13px;height:13px;border-radius:50%;background:linear-gradient(150deg,#565d54,#232722);box-shadow:0 1px 2px #000b,0 -1px #ddd2}.knob-title{margin-top:13px;font-size:14px;letter-spacing:.2em;font-weight:800;color:#e3e5dc}.knob-value{font-family:monospace;font-size:16px;margin-top:7px;min-width:47px;color:var(--amber);letter-spacing:.1em}.knob-desc{font-size:9px;letter-spacing:.13em;margin-top:9px;color:#8c938b}.bottom-controls{border-top:1px solid #72766d33;display:flex;justify-content:space-between;gap:20px;padding-top:17px}.signal-chain,.a-b{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.13em;color:#c2c8be}.signal-chain b{color:#987850}.signal-label{font-size:9px;font-weight:bold;color:#727b70;letter-spacing:.12em;margin-right:10px}.ab,.mini-button{background:#212621;color:#919c8c;border:1px solid #53594e;min-width:29px;height:29px;font-weight:bold;font-size:10px}.ab.selected{background:linear-gradient(#c99c64,#80592d);color:#121411;box-shadow:0 0 7px #e0ac5a44;border-color:#b4915f}.mini-button{padding:0 10px;font-size:9px;letter-spacing:.09em}.rack-rim{display:flex;justify-content:space-between;gap:10px;padding:12px 30px 1px;color:#565c56;font-weight:600;letter-spacing:.18em;font-size:8px}.io-panel{margin-top:28px;padding:25px 23px;border-top:1px solid #555b5344;border-bottom:1px solid #555b5344;display:flex;align-items:start;justify-content:space-between;gap:18px}.source-buttons{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.source-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:37px;border:1px solid #555c53;background:linear-gradient(#353a34,#242824);padding:0 14px;letter-spacing:.09em;font-size:10px;font-weight:700;color:#bac3b6;box-shadow:inset 0 1px #ffffff10,0 2px 4px #0005;cursor:pointer}.source-button:hover{border-color:#a7a38c;color:#fff}.source-button.active{border-color:#b18c55;color:#eec18a;background:linear-gradient(#3c3b31,#26251d)}.source-button:disabled{opacity:.45;cursor:not-allowed}.inline-status,.local-badge{font-size:10px;line-height:1.7;color:#6f786f;max-width:450px}.local-badge .dot{margin-right:5px}.advanced{margin-top:23px;background:linear-gradient(160deg,#292d29,#181c19);padding:28px;border:1px solid #444b43;box-shadow:0 7px 20px #0006}.advanced[hidden]{display:none}.advanced-top{display:flex;justify-content:space-between;align-items:end;padding-bottom:15px;border-bottom:1px solid #666d6133}.advanced h2{margin:6px 0 0;font-size:18px;letter-spacing:.14em}.feature-flag{font-size:9px;letter-spacing:.12em;color:#a68760}.settings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding:25px 0}.settings-grid label{font-size:10px;letter-spacing:.15em;color:#a5ada4;font-weight:700}.settings-grid label span{float:right;color:var(--amber)}.settings-grid input{display:block;cursor:pointer;width:100%;margin-top:18px;accent-color:#d5ab71}.advanced-foot{border-top:1px solid #555b5344;padding-top:18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}.advanced-foot span{font-size:10px;color:#8d9388;line-height:1.5}footer{margin-top:28px;display:flex;gap:12px;justify-content:space-between;color:#646e64;font-size:9px;letter-spacing:.13em}footer div{font-weight:800;color:#b6bcb1}footer div span{font-weight:400;margin-left:13px;color:#727a70}footer>span{max-width:60%;text-align:right}@media(max-width:900px){.upper-metal{padding:25px}.brand-large{font-size:clamp(52px,8vw,80px)}.needle-meter{flex-basis:170px}.control-zone{padding:23px}.main-knobs{padding:25px 0}.knob{width:92px;height:92px}.rigbar{padding:0 5px;gap:10px}.bottom-controls{flex-wrap:wrap}}@media(max-width:670px){.worktop{width:calc(100% - 22px);padding-top:14px}.masthead{margin-bottom:19px}.head-right .product-version{display:none}.rigbar{flex-wrap:wrap;justify-content:space-between}.rig-name{flex:1 1 100%}.rig-name strong{font-size:16px}.preset-ui{flex:1;min-width:0}.power-button{min-width:100px;padding:12px 8px;font-size:9px}.rack{padding:12px 12px 9px}.upper-metal{min-height:123px;padding:12px 15px;gap:5px}.brand-large{font-size:clamp(31px,9.3vw,60px)}.brand-sub{font-size:6px;letter-spacing:.05em}.needle-meter{flex-basis:120px;padding:8px 5px 3px;border-width:3px}.meter-label{font-size:7px}.meter-foot{font-size:6px}.cab-grill{height:68px}.grill-brand{font-size:32px}.grill-meta{display:none}.control-zone{padding:18px 12px}.control-label-row h1{font-size:11px}.zone-label{display:none}.main-knobs{grid-template-columns:repeat(2,1fr);gap:25px 6px;padding:25px 0}.knob{width:103px;height:103px}.knob-desc{font-size:8px}.bottom-controls{flex-direction:column}.signal-chain{gap:5px;flex-wrap:wrap;font-size:9px}.signal-label{margin-right:4px}.rack-rim{padding:10px 14px 0}.rack-rim span:nth-child(2){display:none}.io-panel{flex-wrap:wrap;gap:22px;padding:20px 8px}.io-left,.io-right{width:100%}.settings-grid{grid-template-columns:1fr 1fr;gap:22px}.advanced{padding:18px}.feature-flag{font-size:8px}.advanced h2{font-size:14px}footer{flex-direction:column}footer>span{text-align:left;max-width:none}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* DAZAMP v0.2 functional studio utilities — housed beneath the hardware, never in front of it. */
+.source-button[aria-pressed="true"]{color:#f3d5a1;border-color:#b17e43!important;background:linear-gradient(#49331d,#26241c)!important;box-shadow:inset 0 1px #f2b66c44,0 0 15px #d19c3e22!important}
+.tuner-panel{border:1px solid #41483f;border-radius:5px;background:linear-gradient(115deg,#292e29,#121612 53%,#262b25);padding:16px 24px 20px;margin:17px 0 0;box-shadow:inset 0 1px #89917f26,0 10px 22px #0005}
+.tuner-panel[hidden]{display:none!important}.tuner-heading{display:flex;align-items:center;justify-content:space-between;gap:14px}.tuner-heading>span:last-child{font-size:10px;letter-spacing:.04em;color:#8e998d}
+.tuner-main{display:flex;justify-content:space-between;align-items:center;gap:22px;margin-top:15px}.tuner-main>strong{font-size:40px;min-width:86px;line-height:1;font-weight:800;letter-spacing:-.05em;color:#e8ddd0}.tuner-main>span{color:#bdbfb8;font-size:11px;letter-spacing:.08em;min-width:115px}.tuner-main #tunerFreq{text-align:right;color:#b79b72}.tuner-scale{height:24px;position:relative;flex:1;min-width:100px;max-width:480px;overflow:hidden;border-radius:2px;border:1px solid #3b483a;background:#131a16}.tuner-ticks{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(10% - 1px),#a7ae8d77 calc(10% - 1px),#a7ae8d77 10%);opacity:.6}.tuner-center{position:absolute;left:50%;top:0;bottom:0;width:2px;background:#b4c593}.tuner-needle{position:absolute;left:50%;top:1px;bottom:1px;width:4px;border-radius:2px;background:#eab069;box-shadow:0 0 9px #eeab49;transform:translateX(-50%);transition:left .14s ease-out}
+.bank-tools{display:flex;align-items:center;flex-wrap:wrap;gap:11px;padding-top:20px;margin-top:18px;border-top:1px solid #75826e33}.bank-tools>span{font-size:10px;color:#929c90;letter-spacing:.06em}
+@media(max-width:760px){.tuner-main{gap:9px;flex-wrap:wrap}.tuner-main>strong{font-size:31px;min-width:65px}.tuner-main>span{font-size:9px;min-width:95px}.tuner-scale{order:4;min-width:100%;max-width:none}.tuner-heading{align-items:start;flex-direction:column;gap:6px}}
+
+</style>
+</head>
+<body>
+  <div class="worktop">
+    <header class="masthead">
+      <div class="studio-title"><span class="glyph">◫</span><span>DAZAMP <small>AMPLIFICATION SYSTEMS</small></span></div>
+      <div class="head-right"><span class="product-version">DAZAMP / 001 — DEVELOPMENT SERIES</span><span class="dot"></span><span id="engineState">ENGINE OFFLINE</span></div>
+    </header>
+    <main>
+      <section class="rigbar" aria-label="Rig control">
+        <div class="rig-name"><span class="eyebrow">AMPLIFIER PROFILE</span><strong>THE MODERN BRITISH</strong><span class="rig-serial">MODEL: D-800 / HYBRID</span></div>
+        <div class="preset-ui"><span class="eyebrow">SOUND LIBRARY</span><div class="preset-select"><button id="prevPreset" aria-label="Previous preset">‹</button><select id="presetSelect" aria-label="Tone preset"></select><button id="nextPreset" aria-label="Next preset">›</button></div></div>
+        <div class="power-block"><span class="eyebrow">AUDIO PROCESSOR</span><button id="powerButton" class="power-button" aria-pressed="false"><span class="power-led"></span><span id="powerText">POWER ON</span></button></div>
+      </section>
+      <section class="rack" aria-label="DAZAMP amplifier interface">
+        <span class="screw screw-tl"></span><span class="screw screw-tr"></span><span class="screw screw-bl"></span><span class="screw screw-br"></span>
+        <div class="faceplate">
+          <div class="upper-metal">
+            <div class="engraving"><div class="brand-large">DAZ<span>A</span>MP</div><div class="brand-sub">DISCRETE · ANALOGUE · ZERO-COMPROMISE · AMPLIFICATION · MODELLING · PLATFORM</div></div>
+            <div class="needle-meter" aria-label="Output meter"><div class="meter-label">OUTPUT / dB</div><svg viewBox="0 0 180 94" aria-hidden="true"><path d="M 17 77 A 73 73 0 0 1 163 77" stroke="#604a2d" stroke-width="2" fill="none"/><path d="M 28 77 A 62 62 0 0 1 152 77" stroke="#c89948" stroke-width="1" opacity="0.6" fill="none"/><g stroke="#ad9668" stroke-width="1"><line x1="16" y1="78" x2="24" y2="78"/><line x1="32" y1="29" x2="38" y2="34"/><line x1="90" y1="4" x2="90" y2="13"/><line x1="148" y1="29" x2="142" y2="34"/><line x1="164" y1="78" x2="156" y2="78"/></g><text x="19" y="91" fill="#ad9369" font-size="10">−30</text><text x="79" y="22" fill="#ad9369" font-size="10">−12</text><text x="145" y="91" fill="#ad9369" font-size="10">0</text><g id="vuNeedle"><line x1="90" y1="83" x2="90" y2="18" stroke="#edc27d" stroke-width="2"/><circle cx="90" cy="83" r="5" fill="#a78a63"/></g></svg><div class="meter-foot">DAZAMP AUDIO <span id="peakLabel">−∞ dB</span></div></div>
+          </div>
+          <div class="cab-grill" aria-hidden="true"><div class="grill-brand">D-800</div><div class="grill-meta">BRITISH VOICING / HAND-TUNED CIRCUIT</div></div>
+          <div class="control-zone"><div class="control-label-row"><div><span class="eyebrow">TONE SHAPING</span><h1>FOUR CONTROLS. ONE SOUND.</h1></div><span class="zone-label">PRECISION MACROS // 0—100</span></div>
+            <div class="main-knobs">
+              <div class="knob-unit"><div class="knob" role="slider" tabindex="0" data-param="tight" aria-label="Tight" aria-valuemin="0" aria-valuemax="100" aria-valuenow="69"><div class="knob-shadow"></div><div class="knob-ring"></div><div class="knob-face"><div class="knob-pointer"></div><div class="knob-inset"></div></div></div><div class="knob-title">TIGHT</div><div class="knob-value" id="tightValue">69</div><div class="knob-desc">PICK ATTACK / LOW-END</div></div>
+              <div class="knob-unit"><div class="knob" role="slider" tabindex="0" data-param="grind" aria-label="Grind" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72"><div class="knob-shadow"></div><div class="knob-ring"></div><div class="knob-face"><div class="knob-pointer"></div><div class="knob-inset"></div></div></div><div class="knob-title">GRIND</div><div class="knob-value" id="grindValue">72</div><div class="knob-desc">HARMONICS / SATURATION</div></div>
+              <div class="knob-unit"><div class="knob" role="slider" tabindex="0" data-param="body" aria-label="Body" aria-valuemin="0" aria-valuemax="100" aria-valuenow="61"><div class="knob-shadow"></div><div class="knob-ring"></div><div class="knob-face"><div class="knob-pointer"></div><div class="knob-inset"></div></div></div><div class="knob-title">BODY</div><div class="knob-value" id="bodyValue">61</div><div class="knob-desc">MIDRANGE / WEIGHT</div></div>
+              <div class="knob-unit"><div class="knob" role="slider" tabindex="0" data-param="space" aria-label="Space" aria-valuemin="0" aria-valuemax="100" aria-valuenow="14"><div class="knob-shadow"></div><div class="knob-ring"></div><div class="knob-face"><div class="knob-pointer"></div><div class="knob-inset"></div></div></div><div class="knob-title">SPACE</div><div class="knob-value" id="spaceValue">14</div><div class="knob-desc">STEREO DEPTH / AMBIENCE</div></div>
+            </div>
+            <div class="bottom-controls"><div class="signal-chain"><span class="signal-label">SIGNAL PATH</span><span>HI-Z</span><b>—</b><span>BOOST</span><b>—</b><span>AMP</span><b>—</b><span>CAB</span><b>—</b><span>SPACE</span></div><div class="a-b"><span class="signal-label">SNAPSHOT</span><button id="aButton" class="ab selected">A</button><button id="bButton" class="ab">B</button><button id="copyAB" class="mini-button" title="Copy current snapshot to the other">COPY A/B</button></div></div>
+          </div>
+        </div>
+        <div class="rack-rim"><span>ENGINEERED FOR IMPACT</span><span>DAZAMP / D-800 SERIES</span><span>48 KHZ RECOMMENDED</span></div>
+      </section>
+      <section class="io-panel" aria-label="Audio input and settings">
+        <div class="io-left"><span class="eyebrow">INPUT SOURCE</span><div class="source-buttons"><button id="demoButton" class="source-button active">DEMO RIFF</button><button id="micButton" class="source-button">GUITAR / INTERFACE</button><label for="fileInput" class="source-button file-label">LOAD DRY AUDIO</label><input type="file" id="fileInput" accept="audio/*" hidden></div><div id="sourceStatus" class="inline-status">Press POWER ON, then DEMO RIFF to audition the tone.</div></div>
+        <div class="io-right"><span class="eyebrow">WORKFLOW</span><div class="source-buttons"><button id="toggleAdvanced" class="source-button">ADVANCED <span id="advancedChevron">+</span></button><button id="savePreset" class="source-button">SAVE PRESET</button><button id="recordButton" class="source-button">RECORD OUTPUT</button><button id="monoButton" class="source-button" aria-pressed="false">MONO CHECK</button><button id="tunerButton" class="source-button" aria-pressed="false">TUNER</button></div><div class="local-badge"><span class="dot"></span>LOCAL PROCESSING · NO ACCOUNT</div></div>
+      </section>
+      <section id="tunerPanel" class="tuner-panel" hidden aria-label="Input guitar tuner">
+        <div class="tuner-heading"><span class="eyebrow">INSTRUMENT / INPUT TUNER</span><span id="tunerHint">Play a single note through your guitar interface</span></div>
+        <div class="tuner-main"><strong id="tunerNote">—</strong><span id="tunerCents">WAITING FOR SIGNAL</span><div class="tuner-scale" aria-hidden="true"><div class="tuner-ticks"></div><span class="tuner-center"></span><span class="tuner-needle" id="tunerNeedle"></span></div><span id="tunerFreq">— Hz</span></div>
+      </section>
+      <section class="advanced" id="advancedPanel" hidden aria-label="Advanced settings"><div class="advanced-top"><div><span class="eyebrow">UNDER THE HOOD</span><h2>TECHNICAL CONTROL</h2></div><span class="feature-flag">ALGORITHM V0.2 · PROCEDURAL CAB</span></div><div class="settings-grid"><label>INPUT TRIM <span id="inputTrimOut">0 dB</span><input id="inputTrim" type="range" min="-18" max="18" step="1" value="0"></label><label>OUTPUT LEVEL <span id="outputTrimOut">−5 dB</span><input id="outputTrim" type="range" min="-24" max="6" step="1" value="-5"></label><label>HIGH CUT <span id="highCutOut">6800 Hz</span><input id="highCut" type="range" min="3500" max="10000" step="100" value="6800"></label><label>GATE THRESHOLD <span id="gateOut">−48 dB</span><input id="gate" type="range" min="-70" max="-20" step="1" value="-48"></label><label>CAB CHARACTER <span id="cabOut">45% RIBBON</span><input id="cabMix" type="range" min="0" max="100" step="1" value="45"></label><label>STEREO WIDTH <span id="widthOut">70%</span><input id="width" type="range" min="0" max="100" step="1" value="70"></label></div><div class="advanced-foot"><label for="irInput" class="source-button">LOAD CUSTOM CAB WAV IR</label><input type="file" id="irInput" accept=".wav,audio/wav" hidden><span id="irStatus">Built-in synthetic 4×12 response · load your own IR for authentic cab tone</span></div><div class="bank-tools"><button id="exportBank" class="source-button">EXPORT PRESETS</button><label for="importBankInput" class="source-button file-label">IMPORT PRESETS</label><input type="file" id="importBankInput" accept=".json,application/json" hidden><span>Preset JSON is local to your device. No cloud uploads.</span></div></section>
+      <footer><div>DAZAMP <span>DEVELOPMENT PREVIEW · AUDIO V0.2</span></div><span>ORIGINAL DSP PROTOTYPE — NOT A NEURAL CAPTURE OR OFFICIAL LEE MALIA TONE</span></footer>
+    </main>
+  </div>
+  <script>
+/* DAZAMP v0.2 pitch estimation — offline-testable YIN-style difference function. */
+'use strict';
+(function(root) {
+  function detectPitch(samples, sampleRate, minHz = 42, maxHz = 1020) {
+    if (!samples || samples.length < 1024 || !Number.isFinite(sampleRate)) return null;
+    const length = samples.length;
+    let power = 0;
+    for (let i = 0; i < length; i++) power += samples[i] * samples[i];
+    const rms = Math.sqrt(power / length);
+    if (rms < 0.008) return null;
+    const minLag = Math.max(2, Math.floor(sampleRate / maxHz));
+    const maxLag = Math.min(Math.floor(sampleRate / minHz), Math.floor(length / 2) - 1);
+    if (maxLag <= minLag) return null;
+    // Use a fixed comparison window so the average difference is independent of lag.
+    const windowLength = Math.min(1250, length - maxLag);
+    const differences = new Float32Array(maxLag + 2);
+    for (let lag = 1; lag <= maxLag; lag++) {
+      let d = 0;
+      for (let i = 0; i < windowLength; i += 2) {
+        const z = samples[i] - samples[i + lag];
+        d += z * z;
+      }
+      differences[lag] = d;
+    }
+    let total = 0, candidate = -1, bestScore = 1;
+    const normalized = new Float32Array(maxLag + 2);
+    for (let lag = 1; lag <= maxLag; lag++) {
+      total += differences[lag];
+      normalized[lag] = total ? differences[lag] * lag / total : 1;
+    }
+    // First sufficiently deep local minimum beats a stronger harmonic an octave down.
+    for (let lag = minLag; lag < maxLag; lag++) {
+      const score = normalized[lag];
+      if (score < 0.18 && score <= normalized[lag + 1]) {
+        candidate = lag;
+        while (candidate + 1 < maxLag && normalized[candidate + 1] < normalized[candidate]) candidate++;
+        bestScore = normalized[candidate];
+        break;
+      }
+    }
+    if (candidate < 0) return null;
+    const prev = normalized[candidate - 1], mid = normalized[candidate], next = normalized[candidate + 1];
+    const denom = prev + next - 2 * mid;
+    const refined = candidate + (Math.abs(denom) > 1e-7 ? Math.max(-1, Math.min(1, (prev - next) / (2 * denom))) : 0);
+    const frequency = sampleRate / refined;
+    if (!Number.isFinite(frequency) || frequency < minHz || frequency > maxHz || bestScore > .18) return null;
+    const midi = 69 + 12 * Math.log2(frequency / 440);
+    const closestMidi = Math.round(midi);
+    const names = ['C','C♯','D','E♭','E','F','F♯','G','A♭','A','B♭','B'];
+    return {frequency, midi, note: names[(closestMidi%12+12)%12], octave: Math.floor(closestMidi/12)-1,
+      cents: (midi-closestMidi)*100, confidence: Math.max(0,1-bestScore), rms};
+  }
+  root.DazampTuner = { detectPitch };
+  if (typeof module !== 'undefined' && module.exports) module.exports = {detectPitch};
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script><script>
+/* DAZAMP v0.2. Original Web Audio DSP; this is NOT a trained NAM model. */
+'use strict';
+class DazampAudio {
+  constructor() {
+    this.context = null;
+    this.ready = false;
+    this.mediaStream = null;
+    this.sourceNode = null;
+    this.bufferSource = null;
+    this.demoBuffer = null;
+    this.oscillators = [];
+    this.params = {};
+    this.customIR = false;
+  }
+  gain(db) { return Math.pow(10, db / 20); }
+  filter(type, freq, q = 0.707, gain = 0) {
+    const f = this.context.createBiquadFilter();
+    f.type = type; f.frequency.value = freq; f.Q.value = q; f.gain.value = gain;
+    return f;
+  }
+  makeShaper(amount, bias = 0.0) {
+    const points = 16384; const curve = new Float32Array(points);
+    const norm = Math.tanh(amount * (1 + Math.abs(bias)));
+    for (let i = 0; i < points; i++) {
+      const x = i * 2 / (points - 1) - 1;
+      const y = Math.tanh(amount * (x + bias)) - Math.tanh(amount * bias);
+      curve[i] = Math.max(-1, Math.min(1, y / Math.max(.01, norm)));
+    }
+    return curve;
+  }
+  impulseResponse(kind) {
+    const c = this.context; const n = 4096; const rate = c.sampleRate;
+    const b = c.createBuffer(2, n, rate);
+    let seed = kind === 'close' ? 17 : 777;
+    const random = () => { seed = (1664525 * seed + 1013904223) >>> 0; return seed / 4294967296; };
+    for (let ch = 0; ch < 2; ch++) {
+      const d = b.getChannelData(ch);
+      d[0] = kind === 'close' ? .78 : .55;
+      for (let i = 1; i < n; i++) {
+        const t = i / rate;
+        const shade = kind === 'close' ? 0.20 : 0.30;
+        const early = (random() - .5) * shade * Math.exp(-t * (kind === 'close' ? 250 : 110));
+        const ring = 0.06 * Math.sin(2 * Math.PI * (kind === 'close' ? 140 : 205) * t) * Math.exp(-t * 150);
+        d[i] = early + ring;
+      }
+      d[Math.floor(.0067 * rate)] += kind === 'close' ? .15 : .26;
+      d[Math.floor(.0142 * rate)] -= kind === 'close' ? .08 : .14;
+    }
+    return b;
+  }
+  reverbImpulse(seconds = 2.5) {
+    const c = this.context; const n = Math.floor(seconds * c.sampleRate);
+    const ir = c.createBuffer(2, n, c.sampleRate);
+    let rng = 314159265;
+    const rand = () => { rng = (rng * 1664525 + 1013904223) >>> 0; return rng / 4294967296; };
+    for (let ch = 0; ch < 2; ch++) {
+      const a = ir.getChannelData(ch); let lp = 0;
+      for (let i = 0; i < n; i++) {
+        const t = i / c.sampleRate;
+        lp = lp * .84 + (rand() * 2 - 1) * .16;
+        const rise = 1 - Math.exp(-t * 120);
+        a[i] = lp * rise * Math.exp(-t * 3.1) * .95;
+      }
+    }
+    return ir;
+  }
+  async init() {
+    if (this.ready) { await this.context.resume(); return; }
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) throw new Error('Web Audio is unavailable in this browser.');
+    this.context = new Ctx({ latencyHint: 'interactive' });
+    await this.context.resume();
+    const c = this.context;
+    this.input = c.createGain();
+    this.inputMeter = c.createAnalyser(); this.inputMeter.fftSize = 4096;
+    this.gateGain = c.createGain(); this.gateEnv = 0; this.gateHold = 0;
+    this.preHP = this.filter('highpass', 82);
+    this.boostEQ = this.filter('peaking', 910, .8, 3);
+    this.boostGain = c.createGain(); this.boostGain.gain.value = 1.5;
+    this.boostShape = c.createWaveShaper(); this.boostShape.oversample = '4x'; this.boostShape.curve = this.makeShaper(1.25, .03);
+    this.lowTrim = this.filter('lowshelf', 175, .7, -3);
+    this.preMid = this.filter('peaking', 900, .9, 3);
+    this.preGain = c.createGain();
+    this.ampShape = c.createWaveShaper(); this.ampShape.oversample = '4x'; this.ampShape.curve = this.makeShaper(3.7, .045);
+    this.ampOutput = c.createGain(); this.ampOutput.gain.value = .63;
+    this.postHP = this.filter('highpass', 75);
+    this.bodyEQ = this.filter('peaking', 990, .85, 2.3);
+    this.presence = this.filter('peaking', 3600, .85, -1);
+    this.highCut = this.filter('lowpass', 6800);
+    this.cabClose = c.createConvolver(); this.cabRibbon = c.createConvolver();
+    this.cabClose.normalize = false; this.cabRibbon.normalize = false;
+    this.cabClose.buffer = this.impulseResponse('close');
+    this.cabRibbon.buffer = this.impulseResponse('ribbon');
+    this.closeGain = c.createGain(); this.ribbonGain = c.createGain();
+    this.cabSum = c.createGain();
+    this.dryGain = c.createGain();
+    this.spaceGain = c.createGain();
+    this.ambience = c.createGain();
+    this.delayLeft = c.createDelay(2); this.delayRight = c.createDelay(2);
+    this.delayLeft.delayTime.value = .215; this.delayRight.delayTime.value = .389;
+    this.delayLP = this.filter('lowpass', 4100); this.delayRP = this.filter('lowpass', 3100);
+    this.delayFeedbackL = c.createGain(); this.delayFeedbackR = c.createGain();
+    this.delayFeedbackL.gain.value = .23; this.delayFeedbackR.gain.value = .18;
+    this.delayGain = c.createGain(); this.delayGain.gain.value = .33;
+    this.delayPanL = c.createStereoPanner(); this.delayPanR = c.createStereoPanner();
+    this.delayPanL.pan.value = -.75; this.delayPanR.pan.value = .75;
+    this.widenerLeft = c.createDelay(.1); this.widenerRight = c.createDelay(.1);
+    this.widenerLeft.delayTime.value = .018; this.widenerRight.delayTime.value = .028;
+    this.widthGainL = c.createGain(); this.widthGainR = c.createGain();
+    this.widthPanL = c.createStereoPanner(); this.widthPanR = c.createStereoPanner();
+    this.widthPanL.pan.value = -1; this.widthPanR.pan.value = 1;
+    this.reverb = c.createConvolver(); this.reverb.normalize = true; this.reverb.buffer = this.reverbImpulse();
+    this.revDark = this.filter('lowpass', 3300);
+    this.revGain = c.createGain(); this.revGain.gain.value = .10;
+    this.stereoMix = c.createGain();
+    this.limiter = c.createDynamicsCompressor();
+    this.limiter.threshold.value = -7; this.limiter.knee.value = 4; this.limiter.ratio.value = 15; this.limiter.attack.value = .003; this.limiter.release.value = .08;
+    this.output = c.createGain();
+    this.analyser = c.createAnalyser(); this.analyser.fftSize = 2048; this.analyser.smoothingTimeConstant = .7;
+    this.recordOut = c.createMediaStreamDestination();
+    this.input.connect(this.inputMeter); this.inputMeter.connect(this.gateGain);
+    [this.gateGain, this.preHP, this.boostEQ, this.boostGain, this.boostShape, this.lowTrim,
+     this.preMid, this.preGain, this.ampShape, this.ampOutput, this.postHP, this.bodyEQ,
+     this.presence, this.highCut].forEach((node, idx, chain) => { if (idx < chain.length - 1) node.connect(chain[idx+1]); });
+    this.highCut.connect(this.cabClose); this.highCut.connect(this.cabRibbon);
+    this.cabClose.connect(this.closeGain); this.cabRibbon.connect(this.ribbonGain);
+    this.closeGain.connect(this.cabSum); this.ribbonGain.connect(this.cabSum);
+    this.cabSum.connect(this.dryGain); this.dryGain.connect(this.stereoMix);
+    this.cabSum.connect(this.spaceGain);
+    this.spaceGain.connect(this.delayLeft); this.spaceGain.connect(this.delayRight);
+    this.delayLeft.connect(this.delayLP); this.delayLP.connect(this.delayPanL); this.delayPanL.connect(this.delayGain);
+    this.delayLP.connect(this.delayFeedbackL); this.delayFeedbackL.connect(this.delayLeft);
+    this.delayRight.connect(this.delayRP); this.delayRP.connect(this.delayPanR); this.delayPanR.connect(this.delayGain);
+    this.delayRP.connect(this.delayFeedbackR); this.delayFeedbackR.connect(this.delayRight);
+    this.delayGain.connect(this.ambience);
+    this.spaceGain.connect(this.widenerLeft); this.spaceGain.connect(this.widenerRight);
+    this.widenerLeft.connect(this.widthPanL); this.widenerRight.connect(this.widthPanR);
+    this.widthPanL.connect(this.widthGainL); this.widthPanR.connect(this.widthGainR);
+    this.widthGainL.connect(this.ambience); this.widthGainR.connect(this.ambience);
+    this.spaceGain.connect(this.reverb); this.reverb.connect(this.revDark); this.revDark.connect(this.revGain); this.revGain.connect(this.ambience);
+    this.ambience.connect(this.stereoMix);
+    this.stereoMix.connect(this.limiter); this.limiter.connect(this.output);
+    // Two parallel monitoring paths: stereo normal or equal-power mono sum.
+    // Mono-check genuinely sums the two channels (not merely collapsing visual meters).
+    this.stereoMonitor = c.createGain(); this.stereoMonitor.gain.value = 1;
+    this.monoMonitor = c.createGain(); this.monoMonitor.gain.value = 0;
+    this.monoSplit = c.createChannelSplitter(2);
+    this.monoLeft = c.createGain(); this.monoLeft.gain.value = 0.5;
+    this.monoRight = c.createGain(); this.monoRight.gain.value = 0.5;
+    this.monoBus = c.createGain();
+    this.monoMerge = c.createChannelMerger(2);
+    this.output.connect(this.stereoMonitor); this.stereoMonitor.connect(this.analyser);
+    this.output.connect(this.monoSplit);
+    this.monoSplit.connect(this.monoLeft, 0); this.monoSplit.connect(this.monoRight, 1);
+    this.monoLeft.connect(this.monoBus); this.monoRight.connect(this.monoBus);
+    this.monoBus.connect(this.monoMerge, 0, 0); this.monoBus.connect(this.monoMerge, 0, 1);
+    this.monoMerge.connect(this.monoMonitor); this.monoMonitor.connect(this.analyser);
+    this.analyser.connect(c.destination); this.analyser.connect(this.recordOut);
+    this.ready = true;
+    await this.setParams({tight:69,grind:72,body:61,space:14,inputTrim:0,outputTrim:-5,highCut:6800,gate:-48,cabMix:45,width:70});
+  }
+  setMonoCheck(on) {
+    if (!this.ready) return;
+    const t = this.context.currentTime;
+    this.stereoMonitor.gain.setTargetAtTime(on ? 0 : 1, t, .012);
+    this.monoMonitor.gain.setTargetAtTime(on ? 1 : 0, t, .012);
+  }
+  getPitch() {
+    if (!this.ready || this.context.state !== 'running' || !window.DazampTuner) return null;
+    const samples = new Float32Array(this.inputMeter.fftSize);
+    this.inputMeter.getFloatTimeDomainData(samples);
+    return window.DazampTuner.detectPitch(samples, this.context.sampleRate);
+  }
+  async setParams(p) {
+    this.params = {...this.params, ...p};
+    if (!this.ready) return;
+    const q = this.params; const t = this.context.currentTime;
+    const smooth = (node, value) => node.setTargetAtTime(value, t, .026);
+    const tight = (q.tight ?? 69)/100, grind = (q.grind ?? 72)/100;
+    const body = (q.body ?? 61)/100, space = (q.space ?? 14)/100;
+    smooth(this.input.gain, this.gain(q.inputTrim ?? 0));
+    smooth(this.preHP.frequency, 58 + tight * 90);
+    smooth(this.lowTrim.gain, -1 - tight * 6.5);
+    smooth(this.boostEQ.gain, 2.2 + tight * 3.7);
+    smooth(this.boostGain.gain, 1.15 + tight * .75);
+    smooth(this.preMid.gain, 1.2 + grind * 3.8);
+    smooth(this.preGain.gain, .60 + grind * 1.55);
+    this.ampShape.curve = this.makeShaper(1.7 + 4.8 * grind, .025 + .035 * grind);
+    smooth(this.ampOutput.gain, .68 - .18 * grind);
+    smooth(this.postHP.frequency, 72 + tight * 24);
+    smooth(this.bodyEQ.gain, -1.8 + body * 7.1);
+    smooth(this.bodyEQ.frequency, 750 + body * 380);
+    smooth(this.presence.gain, -.2 - body * 2.6);
+    smooth(this.highCut.frequency, q.highCut ?? 6800);
+    const cabMix = (q.cabMix ?? 45)/100;
+    // Imported IR is a single microphone response: never double it through
+    // both convolution lanes (which otherwise adds unintended 3 dB).
+    smooth(this.closeGain.gain, this.customIR ? 1 : Math.cos(cabMix * Math.PI/2));
+    smooth(this.ribbonGain.gain, this.customIR ? 0 : Math.sin(cabMix * Math.PI/2));
+    smooth(this.spaceGain.gain, space * .72);
+    smooth(this.dryGain.gain, 1);
+    smooth(this.widthGainL.gain, (q.width ?? 70)/100 * .26);
+    smooth(this.widthGainR.gain, (q.width ?? 70)/100 * .26);
+    smooth(this.revGain.gain, .08 + space * .23);
+    smooth(this.output.gain, this.gain(q.outputTrim ?? -5));
+  }
+  async setDemo() {
+    await this.stopInput();
+    if (!this.demoBuffer) this.demoBuffer = this.buildDemo();
+    this.startBuffer(this.demoBuffer);
+    return 'Synthetic low-tuned riff playing. Replace with your guitar or dry DI for proper tone testing.';
+  }
+  async setFile(file) {
+    await this.stopInput();
+    const data = await file.arrayBuffer();
+    let buffer;
+    try { buffer = await this.context.decodeAudioData(data); }
+    catch { throw new Error('Audio file could not be decoded. Try WAV or MP3.'); }
+    this.startBuffer(buffer);
+    return `Looping ${file.name} (${buffer.duration.toFixed(1)} seconds).`;
+  }
+  async setMic() {
+    if (!navigator.mediaDevices?.getUserMedia) throw new Error('Microphone access requires localhost or HTTPS. Run the included local server.');
+    await this.stopInput();
+    try {
+      this.mediaStream = await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false,channelCount:1},video:false});
+    } catch(e) { throw new Error('Audio input permission failed: ' + e.message); }
+    this.sourceNode = this.context.createMediaStreamSource(this.mediaStream);
+    this.sourceNode.connect(this.input);
+    return 'Guitar interface connected. Use headphones to avoid feedback. Disable interface direct monitoring.';
+  }
+  startBuffer(buffer) {
+    const n = this.context.createBufferSource();
+    n.buffer = buffer; n.loop = true; n.connect(this.input); n.start();
+    this.bufferSource = n; this.sourceNode = n;
+  }
+  async stopInput() {
+    if (this.sourceNode) { try { this.sourceNode.disconnect(); } catch{} this.sourceNode = null; }
+    if (this.bufferSource) { try { this.bufferSource.stop(); } catch{} this.bufferSource.disconnect(); this.bufferSource = null; }
+    if (this.mediaStream) { this.mediaStream.getTracks().forEach(track=>track.stop()); this.mediaStream=null; }
+  }
+  buildDemo() {
+    const c = this.context, sampleRate = c.sampleRate, duration = 8;
+    const b = c.createBuffer(1, Math.round(sampleRate*duration), sampleRate);
+    const a = b.getChannelData(0);
+    let rng = 4399;
+    const rnd = () => { rng=(Math.imul(rng,1664525)+1013904223)>>>0; return rng/4294967296; };
+    const notes = [61.74,61.74,61.74,82.41,61.74,61.74,92.5,82.41,61.74,61.74,61.74,73.42,61.74,82.41,92.5,55];
+    notes.forEach((freq,index)=> {
+      const start = Math.floor(index * .48 * sampleRate), len = Math.floor(.34*sampleRate);
+      const delay = Math.max(2, Math.floor(sampleRate/freq));
+      const line = new Float32Array(delay), palm = index%4===0?1:.75;
+      for(let n=0;n<delay;n++)line[n]=(rnd()*2-1)*palm;
+      let prev=0;
+      for(let i=0;i<len && start+i<a.length;i++){
+        const read=i%delay, v=line[read];
+        line[read]=.992*(.49*v+.51*prev);prev=v;
+        const env=Math.exp(-i/sampleRate*(index%4===3?11:6.2));
+        const attack=(rnd()*2-1)*Math.exp(-i/sampleRate*130)*.12;
+        a[start+i]+=v*env*.24+attack;
+      }
+    });
+    return b;
+  }
+  async loadIR(file) {
+    if (file.size > 5_000_000) throw new Error('IR too large. Select a WAV under 5 MB.');
+    const buffer = await this.context.decodeAudioData(await file.arrayBuffer());
+    if (buffer.duration > 4 || buffer.duration < .001)
+      throw new Error('Cab IR duration must be between 1 ms and 4 seconds.');
+    this.cabClose.buffer = buffer;
+    this.customIR = true;
+    await this.setParams(this.params);
+    return `Loaded ${file.name} · ${(buffer.duration*1000).toFixed(0)} ms. Custom IR active; built-in mic blend bypassed.`;
+  }
+  updateGate() {
+    if (!this.ready || this.context.state !== 'running') return;
+    // Gentle, adaptive noise reduction. Ramping avoids abrupt discontinuities.
+    const arr = new Float32Array(this.inputMeter.fftSize);
+    this.inputMeter.getFloatTimeDomainData(arr);
+    let sum = 0;
+    for (const v of arr) sum += v * v;
+    const rms = Math.sqrt(sum / arr.length);
+    const threshold = this.gain(this.params.gate ?? -48);
+    // Hold the gate after a transient, and never hard-mute the guitar's tail.
+    if (rms > threshold * 1.2) this.gateHold = 9;
+    else this.gateHold = Math.max(0, this.gateHold - 1);
+    const target = this.gateHold > 0 ? 1 : (rms < threshold * .5 ? .18 : .65);
+    this.gateGain.gain.setTargetAtTime(target, this.context.currentTime, target > this.gateGain.gain.value ? .005 : .035);
+  }
+  level() {
+    if (!this.ready || this.context.state !== 'running') return -90;
+    const arr = new Float32Array(this.analyser.fftSize);
+    this.analyser.getFloatTimeDomainData(arr);
+    let sum = 0; for(let i=0;i<arr.length;i++)sum+=arr[i]*arr[i];
+    return 20*Math.log10(Math.max(1e-5,Math.sqrt(sum/arr.length)));
+  }
+}
+window.DazampAudio = DazampAudio;
+
+</script><script>
+/* DAZAMP standalone application control layer */
+'use strict';
+(() => {
+  const $ = x => document.getElementById(x);
+  const engine = new window.DazampAudio();
+  const defaults = { tight:69, grind:72, body:61, space:14, inputTrim:0, outputTrim:-5, highCut:6800, gate:-48, cabMix:45, width:70 };
+  const factory = [
+    {name:'POST HUMAN / RHYTHM', settings:{tight:76,grind:74,body:65,space:12}},
+    {name:'THE WALL / HEAVY', settings:{tight:81,grind:88,body:69,space:20}},
+    {name:'AFTERLIGHT / LEAD', settings:{tight:55,grind:65,body:74,space:72}},
+    {name:'DARK MATTER / AMBIENT', settings:{tight:43,grind:49,body:57,space:92}},
+    {name:'COLD GLASS / CLEAN', settings:{tight:42,grind:8,body:47,space:49}},
+  ];
+  let saved = [];
+  let monoCheck = false, tunerEnabled = false, lastPitchCheck = 0;
+  try { saved = JSON.parse(localStorage.getItem('dazamp_presets')||'[]').filter(x=>x.name&&x.settings); } catch{}
+  const state = {params:{...defaults,...factory[0].settings},snapshots:{A:null,B:null},snapshot:'A',running:false,source:'demo',recording:false};
+  state.snapshots.A = {...state.params}; state.snapshots.B = {...state.params,space:72};
+  function setStatus(message) { $('sourceStatus').textContent=message; }
+  function setEngineStatus() {
+    $('engineState').textContent=state.running?'ENGINE LIVE':'ENGINE OFFLINE';
+    document.querySelector('.head-right .dot')?.classList.toggle('on',state.running);
+    $('powerButton').classList.toggle('on',state.running);
+    $('powerButton').setAttribute('aria-pressed',String(state.running));
+    $('powerText').textContent=state.running?'POWER OFF':'POWER ON';
+  }
+  function updateView() {
+    Object.entries(state.params).forEach(([name,val])=>{
+      const knob=document.querySelector(`.knob[data-param="${name}"]`);
+      if(knob) {knob.style.setProperty('--angle',`${-125+val*2.5}deg`);knob.setAttribute('aria-valuenow',String(val));$(name+'Value').textContent=String(Math.round(val)).padStart(2,'0');}
+      const advanced=$(name); if(advanced && advanced.type==='range') advanced.value=val;
+    });
+    $('inputTrimOut').textContent=`${state.params.inputTrim>0?'+':''}${state.params.inputTrim} dB`;
+    $('outputTrimOut').textContent=`${state.params.outputTrim>0?'+':''}${state.params.outputTrim} dB`;
+    $('highCutOut').textContent=`${state.params.highCut} Hz`;
+    $('gateOut').textContent=`${state.params.gate} dB`;
+    $('cabOut').textContent=`${state.params.cabMix}% RIBBON`;
+    $('widthOut').textContent=`${state.params.width}%`;
+  }
+  function updateParam(name,value) {
+    const num=+value;
+    state.params[name]=num;
+    state.snapshots[state.snapshot]={...state.params};
+    engine.setParams({[name]:num}).catch(err=>setStatus(err.message));
+    updateView();
+    $('presetSelect').value='custom';
+  }
+  function renderPresets() {
+    const options=[...factory,...saved];
+    $('presetSelect').replaceChildren(...options.map((p,i)=>new Option(p.name,String(i))),new Option('CUSTOM / UNSAVED','custom'));
+    $('presetSelect').value='0';
+  }
+  function loadPreset(idx) {
+    const selected=[...factory,...saved][idx]; if(!selected)return;
+    state.params={...defaults,...selected.settings};
+    state.snapshots[state.snapshot]={...state.params};
+    engine.setParams(state.params).catch(err=>setStatus(err.message));
+    updateView(); $('presetSelect').value=String(idx);
+  }
+  async function activateSource(which,file) {
+    if(!state.running) {setStatus('Turn on the audio engine first.');return;}
+    try {
+      let message;
+      if(which==='demo')message=await engine.setDemo();
+      else if(which==='mic')message=await engine.setMic();
+      else if(which==='file')message=await engine.setFile(file);
+      state.source=which;setStatus(message);
+      ['demo','mic'].forEach(s=>$(s+'Button').classList.toggle('active',s===which));
+      document.querySelector('.file-label').classList.toggle('active',which==='file');
+    } catch(err) {setStatus(err.message);}
+  }
+  $('powerButton').addEventListener('click',async()=>{
+    if(state.running) {
+      await engine.stopInput();await engine.context.suspend();state.running=false;setEngineStatus();setStatus('Engine suspended.');return;
+    }
+    try {
+      await engine.init(); await engine.setParams(state.params);
+      state.running=true;setEngineStatus();await activateSource('demo');
+    } catch(err){setStatus('Could not start audio: '+err.message);}
+  });
+  $('demoButton').addEventListener('click',()=>activateSource('demo'));
+  $('micButton').addEventListener('click',()=>activateSource('mic'));
+  $('fileInput').addEventListener('change',e=>{const f=e.target.files[0];if(f)activateSource('file',f);e.target.value='';});
+  $('irInput').addEventListener('change',async e=>{
+    const f=e.target.files[0]; if(!f)return;
+    if(!engine.ready){$('irStatus').textContent='Start the engine, then load a cabinet IR.';return;}
+    try{$('irStatus').textContent=await engine.loadIR(f);$('cabMix').disabled=true;$('cabOut').textContent='CUSTOM IR ACTIVE';}catch(err){$('irStatus').textContent=err.message;}
+    e.target.value='';
+  });
+  $('presetSelect').addEventListener('change',e=>{if(e.target.value!=='custom')loadPreset(+e.target.value);});
+  for(const [id,direction] of [['prevPreset',-1],['nextPreset',1]]) {
+    $(id).addEventListener('click',()=>{
+      const total=factory.length+saved.length;const current=+$('presetSelect').value||0;
+      loadPreset((current+direction+total)%total);
+    });
+  }
+  document.querySelectorAll('.knob').forEach(el=>{
+    const name=el.dataset.param;let drag=null;
+    el.addEventListener('pointerdown',e=>{drag={y:e.clientY,value:state.params[name]};el.setPointerCapture(e.pointerId);});
+    el.addEventListener('pointermove',e=>{if(!drag)return;updateParam(name,Math.max(0,Math.min(100,Math.round(drag.value+(drag.y-e.clientY)*.65))));});
+    el.addEventListener('pointerup',()=>{drag=null;});
+    el.addEventListener('pointercancel',()=>{drag=null;});
+    el.addEventListener('wheel',e=>{e.preventDefault();updateParam(name,Math.max(0,Math.min(100,state.params[name]+(e.deltaY<0?2:-2))));},{passive:false});
+    el.addEventListener('keydown',e=>{
+      const delta=e.key==='ArrowUp'||e.key==='ArrowRight'?1:e.key==='ArrowDown'||e.key==='ArrowLeft'?-1:0;
+      if(delta){e.preventDefault();updateParam(name,Math.max(0,Math.min(100,state.params[name]+delta)));}
+      if(e.key==='Home')updateParam(name,0);
+      if(e.key==='End')updateParam(name,100);
+    });
+  });
+  ['inputTrim','outputTrim','highCut','gate','cabMix','width'].forEach(id=>$(id).addEventListener('input',e=>updateParam(id,e.target.value)));
+  $('toggleAdvanced').addEventListener('click',()=>{
+    $('advancedPanel').hidden=!$('advancedPanel').hidden;
+    $('advancedChevron').textContent=$('advancedPanel').hidden?'+':'−';
+  });
+  function selectSnapshot(letter) {
+    if(letter===state.snapshot)return;
+    state.snapshots[state.snapshot]={...state.params};
+    state.snapshot=letter;
+    state.params={...state.snapshots[letter]};
+    engine.setParams(state.params);updateView();
+    $('aButton').classList.toggle('selected',letter==='A');$('bButton').classList.toggle('selected',letter==='B');
+    $('presetSelect').value='custom';
+  }
+  $('aButton').addEventListener('click',()=>selectSnapshot('A'));
+  $('bButton').addEventListener('click',()=>selectSnapshot('B'));
+  $('copyAB').addEventListener('click',()=>{
+    state.snapshots[state.snapshot==='A'?'B':'A']={...state.params};
+    setStatus(`Copied snapshot ${state.snapshot} to ${state.snapshot==='A'?'B':'A'}.`);
+  });
+  $('monoButton').addEventListener('click', () => {
+    monoCheck = !monoCheck;
+    engine.setMonoCheck(monoCheck);
+    $('monoButton').setAttribute('aria-pressed', String(monoCheck));
+    setStatus(monoCheck ? 'MONO CHECK: summed L+R. Listen for lost weight or phase cancellation.' : 'Stereo monitoring restored.');
+  });
+  $('tunerButton').addEventListener('click', () => {
+    tunerEnabled = !tunerEnabled;
+    $('tunerPanel').hidden = !tunerEnabled;
+    $('tunerButton').setAttribute('aria-pressed', String(tunerEnabled));
+    if (tunerEnabled && !state.running) $('tunerHint').textContent = 'Start the engine and connect your guitar to tune.';
+  });
+  // Export and import user-authored settings only. No code, assets or remote requests.
+  $('exportBank').addEventListener('click', () => {
+    const doc = {schema:'dazamp-preset-bank-v1', app:'DAZAMP', exportedAt:new Date().toISOString(), presets:saved};
+    const blob = new Blob([JSON.stringify(doc, null, 2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href=url; a.download='DAZAMP-preset-bank.json'; a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 30000);
+    setStatus(`Exported ${saved.length} user presets. Factory presets remain built in.`);
+  });
+  $('importBankInput').addEventListener('change', async e => {
+    const file = e.target.files?.[0]; e.target.value = ''; if (!file) return;
+    try {
+      if (file.size > 250000) throw Error('Bank is too large (250 KB maximum).');
+      const doc = JSON.parse(await file.text());
+      if (doc?.schema !== 'dazamp-preset-bank-v1' || !Array.isArray(doc.presets)) throw Error('Not a DAZAMP preset bank.');
+      if (doc.presets.length > 100) throw Error('Bank contains too many presets.');
+      const keys = Object.keys(defaults);
+      const imported = doc.presets.map(p => {
+        if (typeof p.name !== 'string' || !p.name.trim() || typeof p.settings !== 'object' || !p.settings) throw Error('Preset is malformed.');
+        const settings = {...defaults};
+        for (const key of keys) {
+          if (Object.prototype.hasOwnProperty.call(p.settings,key)) {
+            const val = p.settings[key];
+            const slider = $(key);
+            const low = slider && slider.type==='range' ? +slider.min : 0;
+            const high = slider && slider.type==='range' ? +slider.max : 100;
+            if (typeof val !== 'number' || !Number.isFinite(val) || val < low || val > high) throw Error('Preset value out of range: '+key);
+            settings[key] = val;
+          }
+        }
+        return {name:p.name.trim().slice(0,45).toUpperCase(),settings};
+      });
+      const existing = new Set(saved.map(p=>p.name));
+      let added = 0;
+      for (const preset of imported) {
+        if (existing.has(preset.name) || saved.length >= 100) continue;
+        saved.push(preset); existing.add(preset.name); added++;
+      }
+      localStorage.setItem('dazamp_presets', JSON.stringify(saved));
+      renderPresets(); setStatus(`Imported ${added} new presets. ${imported.length-added} duplicates or excess skipped.`);
+    } catch (err) {setStatus('Preset import failed: '+err.message);}
+  });
+  $('savePreset').addEventListener('click',()=>{
+    const proposed='MY DAZAMP TONE '+String(saved.length+1).padStart(2,'0');
+    const name=window.prompt('Name your preset:',proposed)?.trim();if(!name)return;
+    saved.push({name:name.slice(0,45).toUpperCase(),settings:{...state.params}});
+    try{localStorage.setItem('dazamp_presets',JSON.stringify(saved));}catch{}
+    renderPresets();$('presetSelect').value=String(factory.length+saved.length-1);
+    setStatus('Saved preset locally in this browser.');
+  });
+  let recorder=null,chunks=[];
+  $('recordButton').addEventListener('click',()=>{
+    if(!engine.ready||!state.running){setStatus('Start the engine before recording.');return;}
+    if(recorder?.state==='recording'){recorder.stop();return;}
+    if(!window.MediaRecorder){setStatus('Recording is unsupported in this browser.');return;}
+    try {
+      chunks=[];recorder=new MediaRecorder(engine.recordOut.stream);
+      recorder.addEventListener('dataavailable',e=>{if(e.data.size)chunks.push(e.data);});
+      recorder.addEventListener('stop',()=>{
+        const blob=new Blob(chunks,{type:recorder.mimeType||'audio/webm'});
+        const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+        a.download=`DAZAMP-${new Date().toISOString().slice(0,19).replaceAll(':','-')}.${blob.type.includes('mp4')?'m4a':'webm'}`;
+        a.click();setTimeout(()=>URL.revokeObjectURL(a.href),30000);
+        $('recordButton').textContent='RECORD OUTPUT';$('recordButton').classList.remove('active');
+      });
+      recorder.start();$('recordButton').textContent='STOP RECORDING';$('recordButton').classList.add('active');
+      setStatus('Recording processed output. Press STOP RECORDING to save.');
+    }catch(err){setStatus('Recorder error: '+err.message);}
+  });
+  const vu=$('vuNeedle'); let lastUpdate=0;
+  function drawMeter(t) {
+    if(t-lastUpdate>55){
+      engine.updateGate();
+      if (tunerEnabled && t-lastPitchCheck > 125) {
+        lastPitchCheck = t;
+        const pitch = engine.getPitch();
+        if (pitch && pitch.confidence > .72) {
+          $('tunerNote').textContent = pitch.note + pitch.octave;
+          $('tunerCents').textContent = `${pitch.cents>=0?'+':''}${pitch.cents.toFixed(0)} CENTS`;
+          $('tunerFreq').textContent = pitch.frequency.toFixed(1) + ' Hz';
+          $('tunerNeedle').style.left = (50 + pitch.cents*.9) + '%';
+          $('tunerNeedle').style.background = Math.abs(pitch.cents)<4 ? '#b9dba7' : '#eab069';
+          $('tunerHint').textContent = Math.abs(pitch.cents)<4 ? 'IN TUNE' : pitch.cents<0 ? 'TUNE UP' : 'TUNE DOWN';
+        } else {
+          $('tunerNote').textContent = '—'; $('tunerCents').textContent = 'WAITING FOR NOTE';
+          $('tunerFreq').textContent = '— Hz'; $('tunerNeedle').style.left = '50%';
+          $('tunerHint').textContent = state.running ? 'Play one clear note' : 'Start the engine to tune';
+        }
+      }
+      const db=engine.level();
+      const angle=Math.max(-70,Math.min(70,(db+36)/36*140-70));
+      vu.style.transform=`rotate(${angle}deg)`;
+      $('peakLabel').textContent=db<=-85?'−∞ dB':`${db.toFixed(1)} dB`;
+      lastUpdate=t;
+    }
+    requestAnimationFrame(drawMeter);
+  }
+  renderPresets();updateView();setEngineStatus();requestAnimationFrame(drawMeter);
+})();
+
+</script>
+</body>
+</html>
