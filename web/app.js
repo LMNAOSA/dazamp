@@ -12,7 +12,7 @@
     {name:'COLD GLASS / CLEAN', settings:{tight:42,grind:8,body:47,space:49}},
   ];
   let saved = [];
-  let monoCheck = false, tunerEnabled = false, lastPitchCheck = 0;
+  let monoCheck = false, dryCheck = false, tunerEnabled = false, lastPitchCheck = 0;
   try { saved = JSON.parse(localStorage.getItem('dazamp_presets')||'[]').filter(x=>x.name&&x.settings); } catch{}
   const state = {params:{...defaults,...factory[0].settings},snapshots:{A:null,B:null},snapshot:'A',running:false,source:'demo',recording:false};
   state.snapshots.A = {...state.params}; state.snapshots.B = {...state.params,space:72};
@@ -77,6 +77,14 @@
       await engine.init(); await engine.setParams(state.params);
       state.running=true;setEngineStatus();await activateSource('demo');
     } catch(err){setStatus('Could not start audio: '+err.message);}
+  });
+  $('dryCheckButton').addEventListener('click',()=> {
+    dryCheck = !dryCheck;
+    engine.setDryCheck(dryCheck);
+    $('dryCheckButton').textContent = dryCheck ? 'AMP BYPASSED · DRY' : 'AMP ACTIVE · WET';
+    $('dryCheckButton').classList.toggle('active',dryCheck);
+    $('dryCheckButton').setAttribute('aria-pressed',String(dryCheck));
+    setStatus(dryCheck ? 'You are hearing the unchanged dry riff — the DAZAMP amplifier is bypassed.' : 'DAZAMP distortion is LIVE — tweak Grind, Tight, Body and Space while the riff plays.');
   });
   $('demoButton').addEventListener('click',()=>activateSource('demo'));
   $('micButton').addEventListener('click',()=>activateSource('mic'));

@@ -37,7 +37,7 @@ private:
     std::array<std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>, 3> detailConnections;
     juce::ComboBox presetBox;
     juce::TextButton aButton { "A" }, bButton { "B" }, copyButton { "COPY A/B" },
-                     loadIRButton { "LOAD CAB IR" }, bypassButton { "BYPASS" }, monoButton { "MONO" };
+                     loadIRButton { "LOAD CAB IR" }, loadNamButton { "LOAD NAM" }, bypassButton { "BYPASS" }, monoButton { "MONO" };
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> bypassConnection;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> monoConnection;
     std::array<std::array<float, 7>, 2> snapshots {};

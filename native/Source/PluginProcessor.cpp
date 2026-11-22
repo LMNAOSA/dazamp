@@ -49,6 +49,33 @@ bool DazampAudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) co
         && (in == juce::AudioChannelSet::stereo() || in == juce::AudioChannelSet::mono());
 }
 
+// Only used in builds compiled with -DDAZAMP_WITH_NAM=ON.
+// Loading is initiated by a UI file chooser, never on the realtime callback.
+bool DazampAudioProcessor::loadNamModel(const juce::File& file, juce::String& status)
+{
+#if DAZAMP_WITH_NAM
+    if (!file.existsAsFile() || !file.hasFileExtension(".nam"))
+    {
+        status = "Choose a .nam model file";
+        return false;
+    }
+    auto result = neuralAmp.loadModel(file.getFullPathName().toStdString());
+    if (!result)
+    {
+        status = juce::String(result.errorMessage);
+        return false;
+    }
+    neuralLoaded.store(true, std::memory_order_release);
+    status = "NAM ACTIVE: " + file.getFileName();
+    setLatencySamples(neuralAmp.getLatencySamples());
+    return true;
+#else
+    juce::ignoreUnused(file);
+    status = "NAM not built. Run ./build-mac.command --nam on your Mac.";
+    return false;
+#endif
+}
+
 void DazampAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
     rate = sampleRate;
@@ -62,6 +89,13 @@ void DazampAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
     for (auto& line : widthLines) line.assign(size_t(delayLength), 0.f);
     wetBuffer.setSize(2, juce::jmax(64, samplesPerBlock), false, true, false);
     wetBuffer.clear();
+#if DAZAMP_WITH_NAM
+    // Must not run concurrently with processBlock; JUCE hosts suspend processing
+    // when changing sample rates / block sizes.
+    neuralAmp.prepare(rate, samplesPerBlock);
+    if (neuralLoaded.load(std::memory_order_acquire))
+        setLatencySamples(neuralAmp.getLatencySamples());
+#endif
     oversample.reset();
     oversample.initProcessing(size_t(juce::jmax(64, samplesPerBlock)));
     juce::dsp::ProcessSpec spec { rate, static_cast<juce::uint32>(juce::jmax(64, samplesPerBlock)), 2 };
@@ -169,22 +203,37 @@ void DazampAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
         envelopes[size_t(ch)] = env;
     }
 
-    // Four-times oversampled non-linear preamp to reduce aliasing.
+    // Optional genuine neural-capture inference replaces the traditional
+    // saturated stage. Without a loaded model, the original oversampled
+    // DAZAMP distortion is unchanged. Cab / 4 macro controls still work.
     juce::dsp::AudioBlock<float> mainBlock(buffer);
-    auto highRate = oversample.processSamplesUp(mainBlock);
-    const float drive = 1.7f + (grind / 100.f) * 4.8f;
-    const float asymmetry = .025f + .035f * (grind / 100.f);
-    for (size_t ch = 0; ch < highRate.getNumChannels(); ++ch)
+    bool runningNeural = false;
+#if DAZAMP_WITH_NAM
+    if (neuralLoaded.load(std::memory_order_acquire))
     {
-        float* data = highRate.getChannelPointer(ch);
-        for (size_t i = 0; i < highRate.getNumSamples(); ++i)
-        {
-            const float x = data[i];
-            const float y = std::tanh((x + asymmetry) * drive) - std::tanh(asymmetry * drive);
-            data[i] = y * (.68f - grind * .0018f);
-        }
+        neuralAmp.setInputGainDb(juce::jmap(grind, 0.f, 100.f, -8.f, 5.f));
+        neuralAmp.process(buffer, inChannels);
+        runningNeural = true;
     }
-    oversample.processSamplesDown(mainBlock);
+#endif
+    if (!runningNeural)
+    {
+        // Four-times oversampled non-linear preamp to reduce aliasing.
+        auto highRate = oversample.processSamplesUp(mainBlock);
+        const float drive = 1.7f + (grind / 100.f) * 4.8f;
+        const float asymmetry = .025f + .035f * (grind / 100.f);
+        for (size_t ch = 0; ch < highRate.getNumChannels(); ++ch)
+        {
+            float* data = highRate.getChannelPointer(ch);
+            for (size_t i = 0; i < highRate.getNumSamples(); ++i)
+            {
+                const float x = data[i];
+                const float y = std::tanh((x + asymmetry) * drive) - std::tanh(asymmetry * drive);
+                data[i] = y * (.68f - grind * .0018f);
+            }
+        }
+        oversample.processSamplesDown(mainBlock);
+    }
 
     for (int ch = 0; ch < juce::jmin(2, buffer.getNumChannels()); ++ch)
     {

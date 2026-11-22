@@ -1,4 +1,4 @@
-/* DAZAMP v0.2. Original Web Audio DSP; this is NOT a trained NAM model. */
+/* DAZAMP v0.3. Live audio-distortion engine. NOT a trained NAM capture. */
 'use strict';
 class DazampAudio {
   constructor() {
@@ -11,6 +11,7 @@ class DazampAudio {
     this.oscillators = [];
     this.params = {};
     this.customIR = false;
+    this.dryCheck = false;
   }
   gain(db) { return Math.pow(10, db / 20); }
   filter(type, freq, q = 0.707, gain = 0) {
@@ -119,6 +120,9 @@ class DazampAudio {
     this.analyser = c.createAnalyser(); this.analyser.fftSize = 2048; this.analyser.smoothingTimeConstant = .7;
     this.recordOut = c.createMediaStreamDestination();
     this.input.connect(this.inputMeter); this.inputMeter.connect(this.gateGain);
+    // True, equal-duration signal-path A/B from the same source. Only the monitor changes.
+    this.dryMonitor = c.createGain(); this.dryMonitor.gain.value = 0;
+    this.input.connect(this.dryMonitor); this.dryMonitor.connect(this.analyser);
     [this.gateGain, this.preHP, this.boostEQ, this.boostGain, this.boostShape, this.lowTrim,
      this.preMid, this.preGain, this.ampShape, this.ampOutput, this.postHP, this.bodyEQ,
      this.presence, this.highCut].forEach((node, idx, chain) => { if (idx < chain.length - 1) node.connect(chain[idx+1]); });
@@ -159,11 +163,23 @@ class DazampAudio {
     this.ready = true;
     await this.setParams({tight:69,grind:72,body:61,space:14,inputTrim:0,outputTrim:-5,highCut:6800,gate:-48,cabMix:45,width:70});
   }
-  setMonoCheck(on) {
+  setDryCheck(on) {
+    this.dryCheck = !!on;
     if (!this.ready) return;
     const t = this.context.currentTime;
-    this.stereoMonitor.gain.setTargetAtTime(on ? 0 : 1, t, .012);
-    this.monoMonitor.gain.setTargetAtTime(on ? 1 : 0, t, .012);
+    // Preserve processed signal path and spatial history when comparing;
+    // dry bypass is genuinely routed from pre-distortion input.
+    const wet = on ? 0 : 1;
+    this.stereoMonitor.gain.setTargetAtTime(wet && !this.monoEnabled ? 1 : 0, t, .008);
+    this.monoMonitor.gain.setTargetAtTime(wet && this.monoEnabled ? 1 : 0, t, .008);
+    this.dryMonitor.gain.setTargetAtTime(on ? 1.0 : 0, t, .008);
+  }
+  setMonoCheck(on) {
+    this.monoEnabled = !!on;
+    if (!this.ready) return;
+    const t = this.context.currentTime;
+    this.stereoMonitor.gain.setTargetAtTime(this.dryCheck ? 0 : (on ? 0 : 1), t, .012);
+    this.monoMonitor.gain.setTargetAtTime(this.dryCheck ? 0 : (on ? 1 : 0), t, .012);
   }
   getPitch() {
     if (!this.ready || this.context.state !== 'running' || !window.DazampTuner) return null;
@@ -206,9 +222,20 @@ class DazampAudio {
   }
   async setDemo() {
     await this.stopInput();
-    if (!this.demoBuffer) this.demoBuffer = this.buildDemo();
+    if (!this.demoBuffer) {
+      // Original riff is rendered once as a proper DI-like audio asset, and played
+      // through the LIVE amp graph so Tight / Grind / Body / Space still respond.
+      if (window.DAZAMP_RIFF_AUDIO_BASE64) {
+        const binary = atob(window.DAZAMP_RIFF_AUDIO_BASE64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i=0; i<binary.length; i++) bytes[i] = binary.charCodeAt(i);
+        this.demoBuffer = await this.context.decodeAudioData(bytes.buffer);
+      } else {
+        this.demoBuffer = this.buildDemo();
+      }
+    }
     this.startBuffer(this.demoBuffer);
-    return 'Synthetic low-tuned riff playing. Replace with your guitar or dry DI for proper tone testing.';
+    return 'Original low-B demo riff → LIVE boost / distortion / cab / stereo effects. Tap AMP BYPASS to hear the unprocessed input. Guitar-like DI is synthesised, not recorded.';
   }
   async setFile(file) {
     await this.stopInput();

@@ -2,9 +2,12 @@
 set -e
 cd "$(dirname "$0")/native"
 if ! command -v cmake >/dev/null; then
-  echo "CMake is missing. Install CMake with: brew install cmake"
+  echo "CMake missing. Install: brew install cmake"
   exit 1
 fi
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+MODE=OFF
+if [[ "${1:-}" == "--nam" ]]; then MODE=ON; fi
+echo "DAZAMP v0.3 build — NAM support: $MODE"
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DDAZAMP_WITH_NAM="$MODE"
 cmake --build build --config Release -j 4
-printf '\nDAZAMP build finished. Check native/build/DAZAMP_artefacts/Release/\n'
+printf '\nCheck native/build/DAZAMP_artefacts/Release/ for AU, VST3, standalone.\n'

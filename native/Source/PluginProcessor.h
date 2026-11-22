@@ -3,6 +3,9 @@
 #include <array>
 #include <atomic>
 #include <vector>
+#if DAZAMP_WITH_NAM
+#include <ampmodeller/NamModeller.h>
+#endif
 
 class DazampAudioProcessor : public juce::AudioProcessor
 {
@@ -28,12 +31,18 @@ public:
     void setStateInformation(const void*, int) override;
     bool isBusesLayoutSupported(const BusesLayout&) const override;
     void loadCabinetIR(const juce::File&);
+    bool loadNamModel(const juce::File&, juce::String& status);
+    bool supportsNam() const { return DAZAMP_WITH_NAM != 0; }
 
     static juce::AudioProcessorValueTreeState::ParameterLayout makeParameters();
     juce::AudioProcessorValueTreeState parameters;
     std::atomic<float> peakDb { -90.0f };
 
 private:
+#if DAZAMP_WITH_NAM
+    ampmodeller::NamModeller neuralAmp;
+    std::atomic<bool> neuralLoaded { false };
+#endif
     juce::dsp::Convolution cabinet;
     juce::dsp::Oversampling<float> oversample { 2, 2, juce::dsp::Oversampling<float>::filterHalfBandPolyphaseIIR, true };
     std::array<juce::IIRFilter, 2> highPass, lowShelf, bodyFilter, topCut;

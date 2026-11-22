@@ -19,6 +19,16 @@ with sync_playwright() as p:
     assert page.locator('#engineState').inner_text()=='ENGINE LIVE'
     output = page.locator('#peakLabel').inner_text()
     assert '∞' not in output, f'Synthetic riff silent: {output}'
+    page.locator('#dryCheckButton').click()
+    page.wait_for_timeout(240)
+    dry_db = float(page.locator('#peakLabel').inner_text().split(' ')[0])
+    assert page.locator('#dryCheckButton').get_attribute('aria-pressed')=='true'
+    assert 'bypassed' in page.locator('#sourceStatus').inner_text().lower()
+    page.locator('#dryCheckButton').click()
+    page.wait_for_timeout(240)
+    wet_db = float(page.locator('#peakLabel').inner_text().split(' ')[0])
+    assert page.locator('#dryCheckButton').get_attribute('aria-pressed')=='false'
+    assert abs(wet_db-dry_db)>1, f'Bypass not changing output level: {dry_db}, {wet_db}'
     page.locator('#monoButton').click()
     assert page.locator('#monoButton').get_attribute('aria-pressed')=='true'
     assert page.locator('#sourceStatus').inner_text().startswith('MONO CHECK')

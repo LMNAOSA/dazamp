@@ -1,94 +1,71 @@
-# DAZAMP / D-800 — v0.2 development release
+# DAZAMP v0.3 — audible distortion audition + experimental native NAM path
 
-A standalone/browser guitar amp prototype and a JUCE-based AU, VST3 and standalone **native-source project**. The design is an original dark, machined-metal amplifier UI: four interlinked controls, **Tight / Grind / Body / Space**, intentionally avoiding chains of dozens of plugins.
+DAZAMP is an independent guitar amp prototype built around four macro controls: **Tight / Grind / Body / Space**. Dark, engineered hardware-style UI. This release prioritises being able to **hear** the amp, not presenting a static mockup.
 
-## Current build status
+## Hear it right now (no setup)
 
-| Component | Status |
-|---|---|
-| Browser GUI and sound engine | **Playable and automated-test verified in Chromium** |
-| Offline/demo DI riff | **Functional**, procedurally generated, not a real instrument recording |
-| Guitar interface input via browser | Implemented; requires localhost/HTTPS and a supported interface; **real hardware untested** |
-| Custom WAV cabinet IR | Implemented; tested with a generated WAV impulse |
-| Chromatic tuner | Functional, algorithm-tested 43.65–659 Hz, including low drop tunings |
-| Mono-check, factory presets, A/B, user bank JSON import/export | Browser tested |
-| Browser recording | MediaRecorder/WebM or M4A depending on browser; **not lossless WAV yet** |
-| macOS AU, VST3, standalone | **JUCE C++ source only; Mac compilation and Logic/Reaper scan unverified** |
-| Neural Amp Modeler / NAM A2 capture playback | **Not integrated** |
-| Genuine speaker cab/mic captures | User may import legally usable WAV IR; bundled defaults are **synthetic** |
+- **`DAZAMP-listen.html`** — one-click, offline sound player. Press Play. Switch between `DISTORTED / STEREO`, `DISTORTED / MONO` and `BYPASSED / DRY` at the same place in the riff. Download the current MP3.
+- **`DAZAMP-demo.html`** — *interactive amp*, self-contained HTML. Press **POWER ON**: a 7-second riff starts looping through live browser-based overdrive, amp waveshaping, cab processing and ambience. Adjust Tight/Grind/Body/Space. Use **AMP ACTIVE / AMP BYPASSED** to hear the same source directly or processed. Also includes tuner, user audio upload, input interface, cab WAV IR import, presets, A/B, recording, mono check.
+- `audio/DAZAMP_DISTORTED_STEREO.mp3` — ready-made double-tracked processed render.
+- `audio/DAZAMP_DISTORTED_MONO.mp3` — processed mono reference.
+- `audio/DAZAMP_DRY_DI.mp3` — unprocessed DI-like reference.
 
-## Play now
+**Disclosure:** The riff is an **original procedurally synthesised guitar-style DI**, not a real guitar performance, a NAM model, Neural DSP product, Lee Malia recording or transcription of a copyrighted song. The offline sound renders and the browser live DSP are separately implemented reference paths, so they are not sample-for-sample identical. The bundled cabinet tone is an original procedural approximation, not a real 4×12 recorded IR.
 
-1. Unzip `DAZAMP-v0.2.zip`.
-2. Open `DAZAMP-demo.html` in Chrome or Safari.
-3. Press **POWER ON**. The procedural DI demo riff should begin looping automatically. Change Tight, Grind, Body, Space to hear the processing alter the sound.
-4. For your own recorded dry guitar, use **LOAD DRY AUDIO** (WAV or MP3). For real guitar input, see the localhost instructions below.
-5. **TUNER** analyses the raw input, not the distorted output. Low tunings down to approximately F1 are supported when the source is clean and stable.
-6. **MONO CHECK** sums left and right equally to check your sound for phase/width problems.
-7. **ADVANCED** reveals input/output trim, high cut, gate, synthetic cab blend and width. Loading a custom WAV cabinet IR **bypasses** the synthetic cab-mic blend, so two copies of the same custom IR cannot add an unintended gain bump.
-8. **SAVE PRESET** stores a preset in this browser's local storage; **EXPORT PRESETS**/**IMPORT PRESETS** produce or read portable JSON preset banks.
+For a faithful comparison, record your own guitar DI through a quality high-impedance audio interface, then load a licenced, genuine amp-only NAM capture and licensed V30-style cabinet IR in a compiled Mac plugin.
 
-### Live guitar on Mac
+## Try your guitar in the browser
 
-Browser microphone capture requires a secure context, so serve locally instead of opening the file directly:
+For microphone/interface input, serve the `web` directory as localhost so browsers allow secure `getUserMedia`:
 
 ```bash
-cd DAZAMP-v0.2/web
+cd DAZAMP-v0.3/web
 python3 -m http.server 8765
 ```
 
-Open `http://localhost:8765` in Chrome/Safari, choose **GUITAR / INTERFACE**, permit audio input, and select your instrument interface in macOS/browser input settings. Configure the interface for Hi-Z input, disable browser/system echo cancellation when possible, use wired headphones and disable hardware direct monitoring if you don't want to hear the dry guitar over the processed signal. Bluetooth can substantially increase latency.
+Visit `http://localhost:8765` on your Mac, press POWER ON, then GUITAR / INTERFACE. The demo riff is bundled inside the local `web/riff.js` asset, so the instrument-free demo needs no network. Use wired headphones, disable monitoring through the interface and avoid speakers to prevent feedback. For lowest latency or recording, ultimately use the native plugin.
 
-This is **not yet a calibrated low-latency live-performance rig**: browser input/output routing and device latency vary. Do not infer a production-grade delay or CPU budget from the demonstration.
+## Native DAW plugin: experimental NAM support (not yet Mac-built)
 
-### DAW plugin on Mac — source build only
+There is a JUCE source project for AU, VST3 and standalone. Original DAZAMP waveshaping is the default. `--nam` enables an **optional**, experimental C++ model-loading path built using [AmpModeller](https://github.com/JonBellUK/AmpModeller) (which wraps the MIT-licensed [NeuralAmpModelerCore](https://github.com/sdatkinson/NeuralAmpModelerCore)). The wrapper supports processing/model loading with an audio-thread-safe model handoff according to its docs. This integration is source only; it has **not been compiled, signed, DAW-tested or latency-profiled** on Apple Silicon in this environment. It requires external Git dependencies and a **user-supplied `.nam` model** — no unlicensed captures are included.
 
-You'll need Xcode Command Line Tools, CMake 3.22+ (`brew install cmake`), Git and an internet connection for the JUCE dependency if it isn't installed locally.
+On your internet-connected Mac with Xcode Command Line Tools, Git and CMake 3.22+ installed:
 
 ```bash
-cd DAZAMP-v0.2
+cd DAZAMP-v0.3
+./build-mac.command --nam
+```
+
+Or for the original engine with NAM disabled:
+
+```bash
 ./build-mac.command
 ```
 
-Or manually:
+The CMake build downloads JUCE (if not already installed). With `--nam` it also downloads the optional model wrapper and its upstream source. Expected build outputs, if successful: `native/build/DAZAMP_artefacts/Release/`. Insert the AU into Logic or VST3 into Reaper after installation/rescan. In the experimental NAM build, **LOAD NAM** loads a local amplifier-only `.nam` model. The project will continue using the original distortion if NAM is disabled or no model has been loaded. The `LOAD CAB IR` control can supply a cabinet impulse. For full-rig captures that already include a speaker, avoid adding another cabinet filter — the current native cab bypass flow is **not yet implemented**, so use amp-only captures for now.
+
+C++ v0.3 NAM code is a *working integration candidate*, **not verified working binary**. Before any release, test parameter recall, sample rates, device latency, DSP CPU, model switching, failure handling, DAW automation, and actual sound versus a known NAM host. Verify the wrapper's licence and JUCE distribution terms before commercialising. Do not distribute third-party `.nam` captures or cab IRs without permission.
+
+## Tests run here
 
 ```bash
-cd native
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build --config Release -j 4
-```
-
-If the build succeeds, JUCE normally places AU/VST3/Standalone artefacts under `native/build/DAZAMP_artefacts/Release/`. Install AU in `~/Library/Audio/Plug-Ins/Components/`, or VST3 in `~/Library/Audio/Plug-Ins/VST3/` and rescan the host. **This native build has not been compiled against macOS in this environment and may need fixes.** No signed installer or notarised binary is included.
-
-## Under the bonnet
-
-Browser signal path: **DI/guitar → input trim → envelope noise reduction → high-pass / low-trim → boost / multi-stage 4× oversampled waveshaping → post EQ → cabinet convolution → parallel dry + stereo reflections/delay + reverb → compressor/output**. Stereo listening and a true summed-mono listening path are selectable without changing core tone controls. Tuner listens to pre-distortion input.
-
-Native path: **DI → dynamic gate → pre-EQ/boost → 4× oversampled nonlinear amp stage → body/top-cut EQ → cabinet convolution → parallel stereo delay, reflections and reverb → output**. New width and mono-check parameters are host-automatable. Reverb scratch space and widening delay lines are allocated in `prepareToPlay`, not inside the realtime processing callback. The native and browser engines are not numerically identical yet.
-
-## Where it isn't finished
-
-The sound engine is **original waveshaping DSP**, not Neural DSP's proprietary modelling and not the Neural Amp Modeler inference engine. The included synthetic cabinet response is a stand-in, not a real Marshall JCM800 or V30 cabinet recording. The patch names are descriptive; DAZAMP is not endorsed by, affiliated with or a reproduction of any commercial artist, amp manufacturer, Neural DSP, or STL Tones product.
-
-The high-impact, fully photorealistic metal mockup inspired this UI. The current browser and native GUIs are functional custom-rendered implementations, not that final photographed artwork with animated hardware controls. A subsequent presentation/skin pass can align the exact industrial visual with working knobs, without jeopardising audio behaviour.
-
-### Next engineering priorities
-
-1. Compile and test AU, VST3 and standalone on Apple Silicon, including crash/overload testing, host recall and automation.
-2. Integrate a suitably licensed NAM engine and real `.nam` model import, preserving the four-knob macro experience.
-3. A/B the DSP against legally usable modern British amp captures and real cabinet IRs using dry guitar DI recordings; measure latency, oversampling aliasing, output headroom and mono compatibility.
-4. Add real-time WAV capture/offline bounce, reliable input device/channel selection and processor CPU metering.
-5. Persist imported native IR references and snapshot state in host sessions; pursue a polished photoreal hardware skin and proper installer.
-
-## Code, rights and dependencies
-
-Original DAZAMP development source is provided in this archive. JUCE carries separate GPL/commercial terms; check them before distributing a proprietary plugin. Any future NAM, capture or speaker-IR components must be individually checked for licensing and the right to redistribute them. The names Marshall, Neural DSP, STL Tones and Bring Me The Horizon are used only to describe the inspiration/context of tone research.
-
-Run the included test suite for the present browser build:
-
-```bash
-node tests/test_tuner.js
 python tests/test_browser.py
+node tests/test_tuner.js
+python tests/test_audio.py
 ```
 
-The browser test uses an installed local Chromium at `/usr/bin/chromium` and inlines the demo due to navigation restrictions in the build environment; on your Mac, the demo itself is the thing to audition. For results see `TEST-RESULTS.md`.
+- Chromium Web Audio sound starts and reports output; audio is decoded from bundled original riff; amp bypass changes output; GUI knobs, tuner/mono UI, IR importer, bank export/import and mobile overflow tested.
+- The one-click A/B player decodes its MP3s, switches while playing, preserves playhead and has no browser exceptions in Chromium.
+- PCM audio files checked for 48 kHz, sane peaks, stereo separation and changing spectral content after processing.
+- **Mac build and NAM engine load have NOT been tested** due to lack of a Mac development runtime and unavailable third-party dependencies in this environment.
+
+## Priority next
+
+1. Mac compile + real native `.nam` capture audition; verify build API against selected upstream revision and fix any issues.
+2. Replace the synthetic test riff with a **real clean guitar DI** and properly licensed JCM800 amp-only neural capture and V30-style speaker IR. Correct input calibration and playback gain.
+3. Save capture/IR paths in native plugin state, implement proper full-rig cab bypass and model crossfade when changing captures.
+4. Test 44.1/48/96 kHz sample rates, latency, silence, denormals, output clipping and performance on Apple Silicon. Finish metallic rendered UI skin.
+
+### Rights
+
+Original DAZAMP JavaScript/C++ prototype and test audio are made for this project. External JUCE, NAM libraries, captures and cabinet IRs carry their own terms, and are not bundled here. No artist or amp manufacturer endorsement is implied.

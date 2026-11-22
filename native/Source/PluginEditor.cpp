@@ -128,7 +128,7 @@ DazampAudioProcessorEditor::DazampAudioProcessorEditor(DazampAudioProcessor& p)
         detailNames[i].setColour(juce::Label::textColourId, juce::Colour(0xffb7bfb2));
         addAndMakeVisible(detailNames[i]);
     }
-    for (auto* button : { &aButton, &bButton, &copyButton, &loadIRButton, &bypassButton, &monoButton })
+    for (auto* button : { &aButton, &bButton, &copyButton, &loadIRButton, &loadNamButton, &bypassButton, &monoButton })
     {
         roundedButtonStyle(*button);
         addAndMakeVisible(*button);
@@ -147,6 +147,22 @@ DazampAudioProcessorEditor::DazampAudioProcessorEditor(DazampAudioProcessor& p)
             [this, chooser](const juce::FileChooser& fc)
             {
                 if (fc.getResult().existsAsFile()) processor.loadCabinetIR(fc.getResult());
+            });
+        fileChooser = std::move(chooser);
+    };
+    loadNamButton.setEnabled(processor.supportsNam());
+    loadNamButton.setTooltip(processor.supportsNam() ? "Load a licensed NAM capture" : "Build with --nam to enable neural models");
+    loadNamButton.onClick = [this]
+    {
+        auto chooser = std::make_shared<juce::FileChooser>("Select a .nam amplifier capture", juce::File{}, "*.nam");
+        chooser->launchAsync(juce::FileBrowserComponent::openMode | juce::FileBrowserComponent::canSelectFiles,
+            [this, chooser](const juce::FileChooser& fc)
+            {
+                if (!fc.getResult().existsAsFile()) return;
+                juce::String result;
+                processor.loadNamModel(fc.getResult(), result);
+                juce::AlertWindow::showMessageBoxAsync(juce::MessageBoxIconType::InfoIcon,
+                                                        "DAZAMP / NAM", result);
             });
         fileChooser = std::move(chooser);
     };
@@ -285,7 +301,7 @@ void DazampAudioProcessorEditor::paint(juce::Graphics& g)
     g.setFont(juce::FontOptions(10.f));
     g.drawText("SIGNAL     HI-Z   —   BOOST   —   AMP   —   CAB   —   SPACE",75,508,595,35,juce::Justification::centredLeft);
     g.setColour(juce::Colour(0xff788577));
-    g.drawText("DAZAMP   /   D-800   /   v0.2 DSP",66,580,420,22,juce::Justification::centredLeft);
+    g.drawText("DAZAMP   /   D-800   /   v0.3 DSP",66,580,420,22,juce::Justification::centredLeft);
     g.drawText("ORIGINAL MODEL  ·  48 kHz RECOMMENDED",549,580,405,22,juce::Justification::centredRight);
 }
 void DazampAudioProcessorEditor::resized()
@@ -311,6 +327,7 @@ void DazampAudioProcessorEditor::resized()
     detailSliders[1].setBounds(345,551,125,23);
     detailNames[2].setBounds(485,551,65,23);
     detailSliders[2].setBounds(545,551,120,23);
-    loadIRButton.setBounds(684,552,154,27);
-    monoButton.setBounds(849,552,106,27);
+    loadIRButton.setBounds(679,552,90,27);
+    loadNamButton.setBounds(775,552,91,27);
+    monoButton.setBounds(870,552,85,27);
 }

@@ -1,17 +1,12 @@
-# DAZAMP version history
+# DAZAMP release changes
 
-## v0.2 — 22 November 2026
+## v0.3
+- Created an original 7.1-second riff and reproducible offline distortion reference renderer (`audio/render_demo.py`). Exported PCM WAV and MP3 in dry, processed mono and processed double-tracked stereo versions.
+- Added offline, one-click `DAZAMP-listen.html` with native sound playback and switching between pre-rendered references while preserving play position.
+- Embedded the original DI-like riff in `DAZAMP-demo.html`; POWER ON routes it through the browser's actual live distortion/cab/ambience processing, rather than relying on the original unbundled procedural note generator.
+- Added genuine dry/wet monitoring bypass so users can toggle the same riff between unprocessed and DAZAMP-processed audio without switching sound sources.
+- Updated C++ JUCE source with optional *experimental* `.nam` model-loading path using the `AmpModeller` wrapper (NeuralAmpModelerCore under the hood). `./build-mac.command --nam` enables this path when building on Mac. Not compiled here.
+- Added audible asset and browser tests, improved accurate project documentation.
 
-- Chromatic instrument tuner added, including extended low-metal range to F1.
-- True stereo sum-to-mono listening check added in the Web Audio graph.
-- Portable JSON preset-bank import and export with strict value and size validation.
-- Corrected custom cabinet IR signal routing to avoid unintended dual-convolution gain boost.
-- Web audio UX updates: tuner panel, mono-check, import/export controls.
-- Native JUCE engine: reverb scratch buffer moved to `prepareToPlay` instead of being allocated every callback.
-- Native JUCE engine: separate stereo-reflection delays, host parameters for WIDTH and MONO; editor controls added.
-- Updated test suite and visual regression screenshots.
-
-## v0.1 — initial prototype
-
-- Working Web Audio prototype with four tone macros, synthetic demo riff, guitar/file input, cabinets, room ambience, A/B, presets and recorder.
-- JUCE source skeleton for AU/VST3/standalone (uncompiled).
+## v0.2
+- Browser tuner, mono check, preset import/export; native realtime scratch allocation improvements.
